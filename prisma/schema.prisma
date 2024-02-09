@@ -2,11 +2,32 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Account {
+  id     String  @id @default(uuid())
+  status String
+  cards  Card[]
+}
+
+model Transation {
+  id     String @id @default(uuid())
+  ammout String
+  card_id String
+  card Card @relation(fields: [card_id], references: [id])
+}
+
+model Card{
+  id     String @id @default(uuid())
+  id_account String
+  amount Int
+  trasations Transation[]
+  account Account @relation(fields: [id_account],references: [id])
 }
