@@ -51,4 +51,17 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 
 ## endpoints da api
 
-em desenvolvimento.
+### account
+- **POST** `/account` cria uma nova conta.
+
+### transations
+- **POST** `/transations` cria uma nova transação.
+- **GET** `/transations` pega todas as transações relacionado a um cartão.
+- **GET** `/transations/:id` pega uma transação específica.
+
+### card
+- **POST** `/card` cria um novo cartão.
+- **GET** `/card` pega todos os cartões relacionados a uma conta.
+- **GET** `/card/:id` pega um cartão específco.
+
+
