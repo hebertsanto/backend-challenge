@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { transationsRoutes } from './transations';
+import { transationsRoutes } from './transaction';
 import { cardRoutes } from './card';
 import { accountRoute } from './account';
 

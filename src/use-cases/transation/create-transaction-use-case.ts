@@ -1,7 +1,7 @@
-import { PrismaTransitionRepository } from '../../adpaters/repositories/transation-repository';
+import { PrismaTransitionRepository } from '../../adpaters/repositories/transaction-repository';
 import { TTransition } from '../../helpers/types';
 
-export class CreateTransationUseCase {
+export class CreateTranscationUseCase {
 
   private transitionRepository = new PrismaTransitionRepository();
 
@@ -14,13 +14,13 @@ export class CreateTransationUseCase {
   }
 
   async findById(id: string) {
-    const transition = await this.transitionRepository.findTransationById(id);
+    const transition = await this.transitionRepository.findTransactionById(id);
 
     return transition;
   }
 
   async listTransations(id: string) {
-    const listOfTransition = await this.transitionRepository.listTransitions(id);
+    const listOfTransition = await this.transitionRepository.listTransactions(id);
 
     return listOfTransition;
   }

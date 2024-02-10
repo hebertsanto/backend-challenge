@@ -13,7 +13,7 @@ export class PrismaTransitionRepository {
     return newTransation;
   }
 
-  async findTransationById(id: string) {
+  async findTransactionById(id: string) {
     const transition = await prisma.transation.findUnique({
       where: {
         id: id,
@@ -21,7 +21,7 @@ export class PrismaTransitionRepository {
     });
     return transition;
   }
-  async listTransitions(id: string) {
+  async listTransactions(id: string) {
     const transition = await prisma.transation.findMany({
       where: {
         id: id

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { CreateTransationUseCase } from '../../../use-cases/transation/create-transation-use-case';
+import { CreateTranscationUseCase  } from '../../../use-cases/transation/create-transaction-use-case';
 import { string, z, ZodError  } from 'zod';
 
-export const listTransitionByIdController = async(req: Request, res :Response) => {
+export const listTransactionByIdController = async(req: Request, res :Response) => {
 
-  const listAllTransations = new CreateTransationUseCase();
+  const listAllTransations = new CreateTranscationUseCase();
 
   const paramsSchema = z.object({
     id: string().uuid(),

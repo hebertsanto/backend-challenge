@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
-import { ListTransationByIdUseCase } from '../../../use-cases/transation/list-transition-use-case';
+import { ListTransactionByIdUseCase  } from '../../../use-cases/transation/list-transaction-use-case';
 
 export const generatePdfTransaction = async (req: Request, res: Response) => {
-  const transtion = new ListTransationByIdUseCase();
+  const transtion = new ListTransactionByIdUseCase();
   const paramsShcema = z.object({
     id: z.string().uuid(),
   });
