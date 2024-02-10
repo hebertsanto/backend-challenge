@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateAccountUseCase } from '../../../use-cases/account/create-account-use-case';
 
-export const CreateTransationController = async(req: Request, res :Response) => {
+export const createAccountController = async(req: Request, res :Response) => {
 
   const createAccountUseCase = new CreateAccountUseCase();
   const { status } = req.body;
