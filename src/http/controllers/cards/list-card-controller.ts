@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ListCardByIdUseCase } from '../../../use-cases/card/list-card-use-case';
 import { z } from 'zod';
 
-export const listAllCardByIdController = async(req: Request, res: Response) => {
+export const listCardByIdController = async(req: Request, res: Response) => {
 
   const listCardByIdUseCase = new ListCardByIdUseCase();
 

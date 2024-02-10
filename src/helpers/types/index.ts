@@ -1,5 +1,5 @@
 export type TCard = {
-    amount:string,
+    amount:number,
     id_account:string
 }
 export type TAccount ={

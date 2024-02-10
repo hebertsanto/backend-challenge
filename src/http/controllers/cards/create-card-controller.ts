@@ -7,7 +7,7 @@ export const createCardController = async(req: Request, res: Response) => {
   const  createCardUseCase = new CreateCardUseCase();
 
   const cardSchema = z.object({
-    amount: z.string(),
+    amount: z.number(),
     id_account: z.string().uuid()
   });
 
