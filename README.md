@@ -1,4 +1,4 @@
-# desafio backend
+# Desafio backend
 
 ## contexto.
 
@@ -45,6 +45,7 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 - eslint
 - git
 - github
+- html-pdf-node
   
 ## abaixo estão as tabela
 ![Texto alternativo](https://raw.githubusercontent.com/devconductor/desafio-golang/master/img/diagrama.png)
@@ -55,13 +56,16 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 - **POST** `/account` cria uma nova conta.
 
 ### transations
-- **POST** `/transations` cria uma nova transação.
-- **GET** `/transations` pega todas as transações relacionado a um cartão.
-- **GET** `/transations/:id` pega uma transação específica.
-
+- **POST** `/transaction` cria uma nova transação.
+- **GET** `/transaction` pega todas as transações relacionado a um cartão.
+- **GET** `/transaction/:id` pega uma transação específica.
+- **GET** `/transaction/:id/file` gera um arquivo pdf com os dados da transação
+  
 ### card
+
 - **POST** `/card` cria um novo cartão.
 - **GET** `/card` pega todos os cartões relacionados a uma conta.
 - **GET** `/card/:id` pega um cartão específco.
+- **GET** `/card/:id/file` pega informações da conta e todas as transações
 
 
