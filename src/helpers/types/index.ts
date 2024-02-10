@@ -5,3 +5,7 @@ export type TCard = {
 export type TAccount ={
     status: string
 }
+export type TTransition = {
+    ammout:  string,
+    card_id: string
+}
