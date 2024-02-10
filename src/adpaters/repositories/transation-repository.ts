@@ -1,10 +1,10 @@
 
 import { prisma } from '../database/prisma';
-import { ITransition } from '../../use-cases/transation/create-transation-use-case';
+import { TTransition } from '../../helpers/types';
 
 export class PrismaTransitionRepository {
 
-  async create({ ammout, card_id} : ITransition ) {
+  async create({ ammout, card_id} : TTransition ) {
     const newTransation = await prisma.transation.create({
       data: {
         ammout,

@@ -1,16 +1,17 @@
 import { Request, Response } from 'express';
 import { CreateTransationUseCase } from '../../../use-cases/transation/create-transation-use-case';
-import { z, ZodError  } from 'zod';
+import { string, z, ZodError  } from 'zod';
 
 export const listAllTransitionsController = async(req: Request, res :Response) => {
 
   const listAllTransations = new CreateTransationUseCase();
-  const { id } = req.params;
-  const zodIdSchema = z.string().uuid();
+  const paramsSchema = z.object({
+    id: string().uuid(),
+  });
 
   try {
 
-    zodIdSchema.parse(id);
+    const { id } = paramsSchema.parse(req.params);
 
     const ListOftransation = await listAllTransations.listTransations(id);
     return res.status(200).json({
