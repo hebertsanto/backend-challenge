@@ -6,7 +6,7 @@ export const listAllTransitionsController = async(req: Request, res :Response) =
 
   const listAllTransations = new CreateTransationUseCase();
   const paramsSchema = z.object({
-    id: string().uuid(),
+    id: string().uuid()
   });
 
   try {
