@@ -24,6 +24,9 @@ export class PrismaCardsRepository {
     const listsOfCards = await prisma.card.findMany({
       where: {
         id_account: id
+      },
+      include: {
+        trasations: true
       }
     });
     return listsOfCards;
