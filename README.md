@@ -19,10 +19,10 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 - [x] fazer uma transação.
 - [x] listar transações.
 - [x] listar somente uma transação.
-- [ ] listar transações por um periodo. **não incluido no desafio**
-- [ ] paginar transações. **não incluido no desafio**
-- [ ] listar transações num arquivo pdf com seus respectivos dados.
-
+- [x] gerar um pdf com dados de UMA transação.
+- [x] gerar um pdf com dados da conta E todas as transações de uma conta.
+- [ ] listar transações por um periodo. **NÃO incluido no desafio**
+- [ ] paginar transações. **NÃO incluido no desafio**
 
 ## relacionamentos
 
@@ -55,7 +55,8 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 ### account
 - **POST** `/account` cria uma nova conta.
 
-### transations
+### transactions
+
 - **POST** `/transaction` cria uma nova transação.
 - **GET** `/transaction` pega todas as transações relacionado a um cartão.
 - **GET** `/transaction/:id` pega uma transação específica.
