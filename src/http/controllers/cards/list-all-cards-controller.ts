@@ -18,15 +18,36 @@ export const listAllCardsController = async (req: Request, res: Response) => {
 
     cards.forEach((card) => {
       templateHtml += `
-      <p>conta ${card.id_account}</p>
+       <h3>conta : ${card.id_account}</h3>
       `;
-    });
-
-
-    cards.forEach((card) => {
       card.trasations.forEach((transaction) => {
         templateHtml += `
-          <p>valor da transação: ${transaction.ammout}$Reais</p>
+         <table style="text-align:left;">
+          <thead>
+           <th>
+            ID TRANSAÇÃO
+           </th>
+           <th>
+           TRANSAÇÃO
+          </th>
+           <th>
+           VALOR
+          </th>
+          </thead>
+          <tbody>
+           <tr>
+            <td style="text-align:left;">
+              ${transaction.id}
+            </td>
+            <td style="text-align:left;">
+             Netflix
+          </td>
+            <td style="text-align:left;">
+            ${transaction.ammout}
+            </td>
+           </tr>
+          </tbody>
+         </table>
         `;
       });
     });
@@ -35,8 +56,8 @@ export const listAllCardsController = async (req: Request, res: Response) => {
     const template = {
       content: `
     <body>
-    <h1>dados da sua conta</h1>
-    ${templateHtml}
+    <h1>DADOS DA SUA CONTA.</h1>
+     ${templateHtml}
     </body>
     `,
     };
