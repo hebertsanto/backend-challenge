@@ -71,7 +71,7 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 
 - na resposta da rota `/card/:id/file`
 
-#### será retornado um pdf como este : 
-![Texto alternativo](file:///home/hebert/%C3%81rea%20de%20Trabalho/projects/portifolio/public/assets/data-account.pdf)
+#### será retornado um arquvio pdf neste formato : 
+![account](https://github.com/hebertsanto/challange-backend/assets/108555424/6c86cc71-fd64-4614-b43a-ccf4e3a59d3e)
 
 
