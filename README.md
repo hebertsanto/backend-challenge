@@ -30,6 +30,22 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 #### um cartão pode ter muitas transações, ou seja, uma relação de um para muitos.
 #### um cartão pode fazer muitas transações, ou seja, uma relação de um para muitos.
 
+## tecnologias ultilizadas nesse projeto
+
+- node js
+- typescript
+- express
+- zod
+- postgres
+- prisma
+- commitlint
+- husky
+- railway
+- prettier
+- eslint
+- git
+- github
+  
 ## abaixo estão as tabela
 ![Texto alternativo](https://raw.githubusercontent.com/devconductor/desafio-golang/master/img/diagrama.png)
 
