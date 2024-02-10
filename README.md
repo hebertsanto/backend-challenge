@@ -69,4 +69,9 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 - **GET** `/card/:id` pega um cartão específco.
 - **GET** `/card/:id/file` pega informações da conta e todas as transações
 
+- na resposta da rota `/card/:id/file`
+
+#### será retornado um pdf como este : 
+![Texto alternativo](file:///home/hebert/%C3%81rea%20de%20Trabalho/projects/portifolio/public/assets/data-account.pdf)
+
 
