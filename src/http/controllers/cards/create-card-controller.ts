@@ -1,7 +1,7 @@
 import { Request, Response  } from 'express';
 import { CreateCardUseCase } from '../../../use-cases/card/create-card-use-case';
 
-export const CreateCardController = async(req: Request, res: Response) => {
+export const createCardController = async(req: Request, res: Response) => {
 
   const  createCardUseCase = new CreateCardUseCase();
   const { amount, id_account } = req.body;

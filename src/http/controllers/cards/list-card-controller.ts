@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ListCardByIdUseCase } from '../../../use-cases/card/list-card-use-case';
 
-export const ListAllCardByIdController = async(req: Request, res: Response) => {
+export const listAllCardByIdController = async(req: Request, res: Response) => {
 
   const listCardByIdUseCase = new ListCardByIdUseCase();
   const { id } = req.params;
