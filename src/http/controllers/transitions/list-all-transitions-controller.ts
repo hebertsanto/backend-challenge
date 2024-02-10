@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { CreateTransationUseCase } from '../../../use-cases/transation/create-transation-use-case';
 import { z, ZodError  } from 'zod';
 
-export const CreateTransationController = async(req: Request, res :Response) => {
+export const listAllTransitionsController = async(req: Request, res :Response) => {
 
   const listAllTransations = new CreateTransationUseCase();
   const { id } = req.params;
