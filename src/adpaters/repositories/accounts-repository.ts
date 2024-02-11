@@ -10,4 +10,12 @@ export class PrismaAccountRepository {
     });
     return createAccount;
   }
+  async findAccountById(id_account: string) {
+    const account = await prisma.account.findUnique({
+      where: {
+        id: id_account
+      }
+    });
+    return account;
+  }
 }
