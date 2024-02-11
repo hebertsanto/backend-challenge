@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
-import { ListTransactionByIdUseCase  } from '../../../use-cases/transation/list-transaction-use-case';
+import { ListTransactionByIdUseCase  } from '../../../use-cases/transaction/list-transaction-use-case';
 import { ParamDoesNotExist } from '../../../helpers/error';
 
 export const generatePdfTransaction = async (req: Request, res: Response) => {

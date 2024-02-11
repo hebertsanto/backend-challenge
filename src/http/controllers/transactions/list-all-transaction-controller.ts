@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListTransactionUseCase } from '../../../use-cases/transation/list-all-transaction-use-case';
+import { ListTransactionUseCase } from '../../../use-cases/transaction/list-all-transaction-use-case';
 import { string, z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 
