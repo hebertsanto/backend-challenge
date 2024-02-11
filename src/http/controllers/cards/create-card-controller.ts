@@ -1,6 +1,7 @@
 import { Request, Response  } from 'express';
 import { CreateCardUseCase } from '../../../use-cases/card/create-card-use-case';
-import { ZodError, z } from 'zod';
+import { z } from 'zod';
+import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 
 export const createCardController = async(req: Request, res: Response) => {
 
@@ -20,9 +21,14 @@ export const createCardController = async(req: Request, res: Response) => {
       card
     });
   } catch (error) {
-    if (error instanceof ZodError) {
+    if (error instanceof MissingParamError) {
       return res.status(400).json({
-        msg: 'error validating data',
+        msg: 'missing parameter error',
+      });
+    }
+    if (error instanceof ParamDoesNotExist) {
+      return res.status(400).json({
+        msg: 'id account does not exist',
         error
       });
     }
