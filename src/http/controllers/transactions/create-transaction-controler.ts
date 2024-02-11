@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateTranscationUseCase } from '../../../use-cases/transation/create-transaction-use-case';
-import { z, ZodError  } from 'zod';
+import { z } from 'zod';
+import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 
 export const createTransationController = async(req: Request, res :Response) => {
 
@@ -25,9 +26,15 @@ export const createTransationController = async(req: Request, res :Response) => 
       transation
     });
   } catch (error) {
-    if (error instanceof ZodError) {
+    if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
-        msg: 'error validating data',
+        msg: 'card id does not exist',
+        error
+      });
+    }
+    if (error instanceof MissingParamError) {
+      return res.status(400).json({
+        msg: 'card id is required',
         error
       });
     }
