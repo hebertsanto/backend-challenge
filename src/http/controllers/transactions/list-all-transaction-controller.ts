@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ListTransactionUseCase } from '../../../use-cases/transation/list-all-transaction-use-case';
-import { string, z, ZodError  } from 'zod';
+import { string, z } from 'zod';
+import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 
 export const listAllTransactiontionController = async(req: Request, res :Response) => {
 
@@ -19,9 +20,15 @@ export const listAllTransactiontionController = async(req: Request, res :Respons
       ListOftransation
     });
   } catch (error) {
-    if (error instanceof ZodError) {
+    if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
-        msg: 'error data',
+        msg: 'transaction not found',
+        error
+      });
+    }
+    if (error instanceof MissingParamError) {
+      return res.status(400).json({
+        msg: 'transaction id is required',
         error
       });
     }

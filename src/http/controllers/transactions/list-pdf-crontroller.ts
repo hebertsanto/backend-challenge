@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
 import { ListTransactionByIdUseCase  } from '../../../use-cases/transation/list-transaction-use-case';
+import { ParamDoesNotExist } from '../../../helpers/error';
 
 export const generatePdfTransaction = async (req: Request, res: Response) => {
   const transtion = new ListTransactionByIdUseCase();
@@ -28,7 +29,11 @@ export const generatePdfTransaction = async (req: Request, res: Response) => {
 
     return res.send(fileGenerated);
   } catch (error) {
-    console.log(error);
-    return error;
+    if (error instanceof ParamDoesNotExist) {
+      return res.status(400).json({
+        msg: 'transaction not found on database',
+        error
+      });
+    }
   }
 };

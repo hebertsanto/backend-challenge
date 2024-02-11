@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CreateAccountUseCase } from '../../../use-cases/account/create-account-use-case';
-import { ZodError, z } from 'zod';
+import { z } from 'zod';
 
 export const createAccountController = async(req: Request, res :Response) => {
 
@@ -19,11 +19,6 @@ export const createAccountController = async(req: Request, res :Response) => {
       account
     });
   } catch (error) {
-    if (error instanceof ZodError) {
-      return res.status(400).json({
-        msg: 'error validating data',
-        error
-      });
-    }
+    return error;
   }
 };

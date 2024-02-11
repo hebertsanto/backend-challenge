@@ -18,7 +18,7 @@ export class AppRoutes {
     });
 
     app.listen(5000, () => {
-      console.log('tudo em cima');
+      console.log('server is running');
     });
   }
 }
