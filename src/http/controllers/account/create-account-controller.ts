@@ -2,12 +2,21 @@ import { Request, Response } from 'express';
 import { CreateAccountUseCase } from '../../../use-cases/account/create-account-use-case';
 import { z } from 'zod';
 
-export const createAccountController = async(req: Request, res :Response) => {
+/**
+ * Compare
+ * @param req
+ * @param res
+ * @returns
+ */
 
+export const createAccountController = async (
+  req: Request,
+  res: Response,
+): Promise<Response | unknown> => {
   const createAccountUseCase = new CreateAccountUseCase();
 
   const bodySchema = z.object({
-    status: z.string()
+    status: z.string(),
   });
 
   try {
@@ -16,7 +25,7 @@ export const createAccountController = async(req: Request, res :Response) => {
     const account = await createAccountUseCase.create({ status });
     return res.status(200).json({
       msg: 'account created successfully',
-      account
+      account,
     });
   } catch (error) {
     return error;

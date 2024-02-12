@@ -8,13 +8,13 @@ export const createTransationController = async(req: Request, res :Response) => 
   const createTransationUseCase = new CreateTranscationUseCase();
 
 
-  const transationSchema = z.object({
+  const transaction = z.object({
     ammout: z.string(),
     card_id: z.string().uuid()
   });
 
   try {
-    const { ammout, card_id } = transationSchema.parse(req.body);
+    const { ammout, card_id } = transaction.parse(req.body);
 
     const transation = await createTransationUseCase.create( {
       ammout,
