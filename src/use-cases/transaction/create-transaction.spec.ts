@@ -7,15 +7,21 @@ let useCase: any;
 
 test('should throw MissingParamError if ammout is not provided', async () => {
   useCase = new CreateTranscationUseCase();
-  await expect(useCase.create({ card_id: 'card_id' })).rejects.toThrow(MissingParamError);
+  await expect(useCase.create({ card_id: 'card_id' })).rejects.toThrow(
+    MissingParamError,
+  );
 });
 
 test('should throw MissingParamError if card_id is not provided', async () => {
   useCase = new CreateTranscationUseCase();
-  await expect(useCase.create({ ammout: '300' })).rejects.toThrow(MissingParamError);
+  await expect(useCase.create({ ammout: '300' })).rejects.toThrow(
+    MissingParamError,
+  );
 });
 
 test('should throw ParamDoesNotExist if card_id does not exist', async () => {
   useCase = new CreateTranscationUseCase();
-  await expect(useCase.create({card_id: 'card_does_not_exit', ammout: '300'})).rejects.toThrow(ParamDoesNotExist);
+  await expect(
+    useCase.create({ card_id: 'card_does_not_exit', ammout: '300' }),
+  ).rejects.toThrow(ParamDoesNotExist);
 });
