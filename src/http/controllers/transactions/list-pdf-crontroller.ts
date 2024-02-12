@@ -3,8 +3,19 @@ import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
 import { ListTransactionByIdUseCase } from '../../../use-cases/transaction/list-transaction-use-case';
 import { ParamDoesNotExist } from '../../../helpers/error';
+import { TTransaction } from '../../../helpers/types';
 
-export const generatePdfTransaction = async (req: Request, res: Response) => {
+/**
+ *
+ * @param {Request } req request object express
+ * @param {Response } res response object express
+ * @returns { Promise<TTransaction | unknown>} promise to be solved
+ */
+
+export const generatePdfTransaction = async (
+  req: Request,
+  res: Response,
+): Promise<TTransaction | unknown> => {
   const transtion = new ListTransactionByIdUseCase();
   const paramsShcema = z.object({
     id: z.string().uuid(),

@@ -1,13 +1,13 @@
 import { PrismaCardsRepository } from '../../adpaters/repositories/cards-repository';
 import { PrismaTransitionRepository } from '../../adpaters/repositories/transaction-repository';
 import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
-import { TTransition } from '../../helpers/types';
+import { TTransaction } from '../../helpers/types';
 
 export class CreateTranscationUseCase {
   private transitionRepository = new PrismaTransitionRepository();
   private cardRepository = new PrismaCardsRepository();
 
-  async create({ ammout, card_id }: TTransition) {
+  async create({ ammout, card_id }: TTransaction) {
     if (!ammout) {
       throw new MissingParamError('ammout');
     }

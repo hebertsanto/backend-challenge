@@ -2,11 +2,18 @@ import { Request, Response } from 'express';
 import { CreateTranscationUseCase } from '../../../use-cases/transaction/create-transaction-use-case';
 import { z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { TTransition } from '../../../helpers/types';
 
+/**
+ *
+ * @param {Request } req request object express
+ * @param {Response }}res response object express
+ * @returns { Promise<TTransition>} Promise resolved
+ */
 export const createTransationController = async (
   req: Request,
   res: Response,
-) => {
+) : Promise<TTransition | unknown> => {
   const createTransationUseCase = new CreateTranscationUseCase();
 
   const transaction = z.object({

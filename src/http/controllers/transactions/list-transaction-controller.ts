@@ -2,11 +2,19 @@ import { Request, Response } from 'express';
 import { CreateTranscationUseCase } from '../../../use-cases/transaction/create-transaction-use-case';
 import { string, z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { TTransaction } from '../../../helpers/types';
+
+/**
+ *
+ * @param {Request } req request object express
+ * @param {Response } res response object express
+ * @returns { Promise<TTransaction | unknown>} promise to be solved
+ */
 
 export const listTransactionByIdController = async (
   req: Request,
   res: Response,
-) => {
+):  Promise<TTransaction | unknown>  => {
   const listAllTransations = new CreateTranscationUseCase();
 
   const paramsSchema = z.object({

@@ -1,5 +1,5 @@
 import { prisma } from '../database/prisma';
-import { TTransition } from '../../helpers/types';
+import { TTransaction } from '../../helpers/types';
 
 export class PrismaTransitionRepository {
   /**
@@ -7,9 +7,9 @@ export class PrismaTransitionRepository {
    *this method create a new transaction
    * @param { string } ammout - value of the transaction
    * @param { string } card_id - uuid of the card
-   * @returns { Promise<TTransition> } promisse that resolve a new transaction
+   * @returns { Promise<TTransaction> } promisse that resolve a new transaction
    */
-  async create({ ammout, card_id }: TTransition) {
+  async create({ ammout, card_id }: TTransaction) {
     const newTransation = await prisma.transation.create({
       data: {
         ammout,
@@ -23,7 +23,7 @@ export class PrismaTransitionRepository {
    *findTransactionById
    *this method find a transaction by id
    * @param { string } id - uuid of the transaction
-   * @returns { Promise<TTransition> } promisse that resolve a new transaction
+   * @returns { Promise<TTransaction> } promisse that resolve a new transaction
    */
   async findTransactionById(id: string) {
     const transition = await prisma.transation.findUnique({
@@ -37,7 +37,7 @@ export class PrismaTransitionRepository {
    *listTransactions
    *this method find many transaction of the one card
    * @param { string } card_id - uuid of the card
-   * @returns { Promise<TTransition> } promisse that resolve a new transaction
+   * @returns { Promise<TTransaction> } promisse that resolve a new transaction
    */
   async listTransactions(card_id: string) {
     const transition = await prisma.transation.findMany({
