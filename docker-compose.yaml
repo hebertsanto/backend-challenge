@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+ challange-backend:
+    image: postgres
+    ports:
+      - 4000:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DATABASE=challangeBackend
