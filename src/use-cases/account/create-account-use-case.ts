@@ -5,9 +5,9 @@ import { TAccount } from '../../helpers/types';
 export class CreateAccountUseCase {
   private accountRepository = new PrismaAccountRepository();
 
-  async create({ status } : TAccount) {
+  async create({ status }: TAccount) {
     const createAccount = await this.accountRepository.create({
-      status
+      status,
     });
     if (!status) {
       throw new MissingParamError('status');

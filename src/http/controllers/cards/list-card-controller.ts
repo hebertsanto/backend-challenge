@@ -3,12 +3,11 @@ import { ListCardByIdUseCase } from '../../../use-cases/card/list-card-use-case'
 import { z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 
-export const listCardByIdController = async(req: Request, res: Response) => {
-
+export const listCardByIdController = async (req: Request, res: Response) => {
   const listCardByIdUseCase = new ListCardByIdUseCase();
 
   const paramsSchema = z.object({
-    id: z.string().uuid()
+    id: z.string().uuid(),
   });
   try {
     const { id } = paramsSchema.parse(req.params);
@@ -16,18 +15,17 @@ export const listCardByIdController = async(req: Request, res: Response) => {
 
     return res.status(200).json({
       msg: 'card by id are here',
-      card
+      card,
     });
-
   } catch (error) {
     if (error instanceof MissingParamError) {
       return res.json(400).json({
-        msg: 'some error ocurred'
+        msg: 'some error ocurred',
       });
     }
     if (error instanceof ParamDoesNotExist) {
       return res.json(400).json({
-        msg: 'id_account does not exist'
+        msg: 'id_account does not exist',
       });
     }
   }

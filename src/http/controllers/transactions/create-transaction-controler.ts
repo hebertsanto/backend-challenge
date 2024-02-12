@@ -3,39 +3,40 @@ import { CreateTranscationUseCase } from '../../../use-cases/transaction/create-
 import { z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 
-export const createTransationController = async(req: Request, res :Response) => {
-
+export const createTransationController = async (
+  req: Request,
+  res: Response,
+) => {
   const createTransationUseCase = new CreateTranscationUseCase();
-
 
   const transaction = z.object({
     ammout: z.string(),
-    card_id: z.string().uuid()
+    card_id: z.string().uuid(),
   });
 
   try {
     const { ammout, card_id } = transaction.parse(req.body);
 
-    const transation = await createTransationUseCase.create( {
+    const transation = await createTransationUseCase.create({
       ammout,
-      card_id
+      card_id,
     });
 
     return res.status(200).json({
       msg: 'transation created successfully',
-      transation
+      transation,
     });
   } catch (error) {
     if (error instanceof ParamDoesNotExist) {
       return res.status(400).json({
         msg: 'card id does not exist',
-        error
+        error,
       });
     }
     if (error instanceof MissingParamError) {
       return res.status(400).json({
         msg: 'card id is required',
-        error
+        error,
       });
     }
   }

@@ -1,4 +1,4 @@
-import express, {  Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import { router } from '../../routes';
 import { ZodError } from 'zod';
 
@@ -10,11 +10,10 @@ export class AppRoutes {
     app.use((error: ZodError, req: Request, res: Response) => {
       if (error instanceof ZodError) {
         return res.status(400).json({
-          msg:'some error validatin data',
-          error
+          msg: 'some error validatin data',
+          error,
         });
       }
-
     });
 
     app.listen(5000, () => {

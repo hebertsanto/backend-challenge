@@ -1,7 +1,6 @@
 import { prisma } from '../database/prisma';
 import { TAccount } from '../../helpers/types';
 
-
 export class PrismaAccountRepository {
   /**
    *create

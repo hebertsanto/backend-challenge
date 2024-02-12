@@ -4,12 +4,10 @@ import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
 import { TTransition } from '../../helpers/types';
 
 export class CreateTranscationUseCase {
-
   private transitionRepository = new PrismaTransitionRepository();
   private cardRepository = new PrismaCardsRepository();
 
   async create({ ammout, card_id }: TTransition) {
-
     if (!ammout) {
       throw new MissingParamError('ammout');
     }
@@ -24,7 +22,7 @@ export class CreateTranscationUseCase {
     }
     const createTransition = await this.transitionRepository.create({
       ammout,
-      card_id
+      card_id,
     });
     return createTransition;
   }
@@ -41,7 +39,8 @@ export class CreateTranscationUseCase {
   }
 
   async listTransations(id: string) {
-    const listOfTransition = await this.transitionRepository.listTransactions(id);
+    const listOfTransition =
+      await this.transitionRepository.listTransactions(id);
 
     return listOfTransition;
   }

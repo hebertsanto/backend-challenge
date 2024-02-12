@@ -6,7 +6,7 @@ main()
     console.log('prisma is running');
     prisma.$disconnect();
   })
-  .catch((error ) => {
+  .catch((error) => {
     console.log(error);
     prisma.$disconnect();
   });

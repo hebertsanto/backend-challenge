@@ -2,7 +2,6 @@ import { prisma } from '../database/prisma';
 import { TTransition } from '../../helpers/types';
 
 export class PrismaTransitionRepository {
-
   /**
    *create
    *this method create a new transaction
@@ -43,7 +42,7 @@ export class PrismaTransitionRepository {
   async listTransactions(card_id: string) {
     const transition = await prisma.transation.findMany({
       where: {
-        card_id: card_id
+        card_id: card_id,
       },
     });
     return transition;

@@ -3,15 +3,14 @@ import { PrismaCardsRepository } from '../../adpaters/repositories/cards-reposit
 import { ParamDoesNotExist, MissingParamError } from '../../helpers/error';
 import { TCard } from '../../helpers/types';
 
-
 export class CreateCardUseCase {
   private cardRepository = new PrismaCardsRepository();
   private accountRepository = new PrismaAccountRepository();
 
-  async create({ amount, id_account}: TCard) {
+  async create({ amount, id_account }: TCard) {
     const createCard = await this.cardRepository.create({
       amount,
-      id_account
+      id_account,
     });
 
     const account = await this.accountRepository.findAccountById(id_account);
@@ -26,6 +25,5 @@ export class CreateCardUseCase {
       throw new MissingParamError('id_account');
     }
     return createCard;
-
   }
 }

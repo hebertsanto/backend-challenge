@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "lint": "npm run prettier . --write",
+    "lint": "prettier --write .",
     "fix": "npm run eslint --fix .",
     "prepare": "husky",
-    "test":"jest"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",

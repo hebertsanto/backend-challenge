@@ -3,11 +3,10 @@ import { PrismaCardsRepository } from '../../adpaters/repositories/cards-reposit
 import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
 
 export class ListCardsUseCase {
-
   private cardRepository = new PrismaCardsRepository();
   private accountRepository = new PrismaAccountRepository();
 
-  async listAllCards(id : string) {
+  async listAllCards(id: string) {
     const account = await this.accountRepository.findAccountById(id);
 
     if (!account) {
