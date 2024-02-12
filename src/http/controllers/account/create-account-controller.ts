@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CreateAccountUseCase } from '../../../use-cases/account/create-account-use-case';
-import { z } from 'zod';
+import { ZodError, z } from 'zod';
 
 /**
  * createAccountController
@@ -12,7 +12,7 @@ import { z } from 'zod';
 export const createAccountController = async (
   req: Request,
   res: Response,
-): Promise<Response | unknown> => {
+) => {
   const createAccountUseCase = new CreateAccountUseCase();
 
   const bodySchema = z.object({
@@ -28,6 +28,11 @@ export const createAccountController = async (
       account,
     });
   } catch (error) {
-    return error;
+    if (error instanceof ZodError) {
+      return res.json({
+        msg:'erro validando dados',
+        error
+      });
+    }
   }
 };

@@ -7,6 +7,12 @@ export class CreateTranscationUseCase {
   private transitionRepository = new PrismaTransitionRepository();
   private cardRepository = new PrismaCardsRepository();
 
+  /**
+   *create
+   * @param { string } ammout -value of transaction
+   * @param { string } card_id
+   * @returns { Promise<TTransaction>}
+   */
   async create({ ammout, card_id }: TTransaction) {
     if (!ammout) {
       throw new MissingParamError('ammout');
@@ -27,20 +33,32 @@ export class CreateTranscationUseCase {
     return createTransition;
   }
 
-  async findById(id: string) {
-    const transition = await this.transitionRepository.findTransactionById(id);
-    if (!id) {
-      throw new MissingParamError('transaction id');
+  /**
+   *findById
+   * @param { string } transaction_id
+   * @returns { Promise<TTransaction | null> } retun a transaction | null
+   */
+
+  async findById(transaction_id: string) {
+    const transition =
+      await this.transitionRepository.findTransactionById(transaction_id);
+    if (!transaction_id) {
+      throw new MissingParamError('transaction_id');
     }
     if (!transition) {
-      throw new ParamDoesNotExist('transaction id');
+      throw new ParamDoesNotExist('transaction_id');
     }
     return transition;
   }
 
-  async listTransations(id: string) {
+  /**
+   *listTransations
+   * @param { string } transaction_id
+   * @returns { Promise<TTransaction[] | null>} returns list of transactions | null
+   */
+  async listTransations(transaction_id: string) {
     const listOfTransition =
-      await this.transitionRepository.listTransactions(id);
+      await this.transitionRepository.listTransactions(transaction_id);
 
     return listOfTransition;
   }

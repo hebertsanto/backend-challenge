@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateCardUseCase } from '../../../use-cases/card/create-card-use-case';
-import { z } from 'zod';
-import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { ZodError, z } from 'zod';
+import { ParamDoesNotExist } from '../../../helpers/error';
 import { TCard } from '../../../helpers/types';
 
 /**
@@ -30,9 +30,10 @@ export const createCardController = async (
       card,
     });
   } catch (error) {
-    if (error instanceof MissingParamError) {
+    if (error instanceof ZodError) {
       return res.status(400).json({
-        msg: 'missing parameter error',
+        msg: 'error validating data',
+        error
       });
     }
     if (error instanceof ParamDoesNotExist) {
