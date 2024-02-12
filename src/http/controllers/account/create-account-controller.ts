@@ -3,9 +3,9 @@ import { CreateAccountUseCase } from '../../../use-cases/account/create-account-
 import { z } from 'zod';
 
 /**
- * Compare
- * @param req
- * @param res
+ * createAccountController
+ * @param {Request } req -request object express
+ * @param {Response } res response object express
  * @returns
  */
 

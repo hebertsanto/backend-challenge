@@ -2,8 +2,18 @@ import { Request, Response } from 'express';
 import { CreateCardUseCase } from '../../../use-cases/card/create-card-use-case';
 import { z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { TCard } from '../../../helpers/types';
 
-export const createCardController = async (req: Request, res: Response) => {
+/**
+ *createCardController
+ * @param { Request } req request object express
+ * @param { Response } res response object express
+ * @returns { Promise<TCard>} Promise to be resolved
+ */
+export const createCardController = async (
+  req: Request,
+  res: Response,
+): Promise<TCard | unknown> => {
   const createCardUseCase = new CreateCardUseCase();
 
   const cardSchema = z.object({

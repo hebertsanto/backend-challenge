@@ -6,7 +6,7 @@ import { ParamDoesNotExist } from '../../../helpers/error';
 import { TTransaction } from '../../../helpers/types';
 
 /**
- *
+ *generatePdfTransaction
  * @param {Request } req request object express
  * @param {Response } res response object express
  * @returns { Promise<TTransaction | unknown>} promise to be solved

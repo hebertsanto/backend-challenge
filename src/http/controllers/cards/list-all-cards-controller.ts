@@ -2,8 +2,18 @@ import { Request, Response } from 'express';
 import { ListCardsUseCase } from '../../../use-cases/card/list-all-cards-use-case';
 import { ZodError, z } from 'zod';
 import htmlPdf from 'html-pdf-node';
+import { TCard } from '../../../helpers/types';
 
-export const listAllCardsController = async (req: Request, res: Response) => {
+/**
+ *listAllCardsController
+ * @param { Request } req request object express
+ * @param { Response } res response object express
+ * @returns { Promise<TCard>} Promise to be resolved
+ */
+export const listAllCardsController = async (
+  req: Request,
+  res: Response,
+): Promise<TCard | unknown> => {
   const listAllCardsUseCase = new ListCardsUseCase();
 
   const paramsSchema = z.object({
