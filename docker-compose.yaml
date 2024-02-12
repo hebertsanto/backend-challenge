@@ -2,7 +2,9 @@ version: '3'
 
 services:
  challange-backend:
-    image: postgres
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
       - 4000:5432
     environment:
