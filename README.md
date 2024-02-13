@@ -37,20 +37,21 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 
 ## tecnologias ultilizadas nesse projeto
 
-- node js
-- typescript
-- express
-- zod
-- postgres
-- prisma
-- commitlint
-- husky
-- railway
-- prettier
-- eslint
-- git
-- github
+- Node js
+- Typescript
+- Express
+- Zod
+- Postgres
+- Prisma
+- Commitlint
+- Husky
+- Railway
+- Prettier
+- Eslint
+- Git
+- Github
 - html-pdf-node
+- Docker
 
 ## abaixo estão as tabela
 
