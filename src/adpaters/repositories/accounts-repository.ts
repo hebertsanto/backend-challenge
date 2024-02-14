@@ -5,14 +5,16 @@ export class PrismaAccountRepository {
   /**
    *create
    *create an account
-   *@param {string} status
+   *@param {string} email
+   *@param {string} password
    *@returns {Promise<TAccount>} a promisse that resolves with the new account data
    */
 
-  async create({ status }: TAccount) {
+  async create({  email, password }: TAccount) {
     const createAccount = await prisma.account.create({
       data: {
-        status,
+        email,
+        password
       },
     });
     return createAccount;

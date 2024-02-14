@@ -37,7 +37,7 @@ export const listAllTransactiontionController = async (
     }
     if (error instanceof MissingParamError) {
       return res.status(400).json({
-        msg: 'transaction id is required',
+        msg: 'missing parameter',
         error,
       });
     }

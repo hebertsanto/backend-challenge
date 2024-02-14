@@ -16,13 +16,15 @@ export const createAccountController = async (
   const createAccountUseCase = new CreateAccountUseCase();
 
   const bodySchema = z.object({
-    status: z.string(),
+    email: z.string(),
+    password: z.string().min(6)
   });
 
   try {
-    const { status } = bodySchema.parse(req.body);
+    const { email, password } = bodySchema.parse(req.body);
 
-    const account = await createAccountUseCase.create({ status });
+    const account = await createAccountUseCase.create({ email, password });
+
     return res.status(200).json({
       msg: 'account created successfully',
       account,
@@ -30,7 +32,7 @@ export const createAccountController = async (
   } catch (error) {
     if (error instanceof ZodError) {
       return res.json({
-        msg:'erro validando dados',
+        msg:'error validating data',
         error
       });
     }

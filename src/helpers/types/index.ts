@@ -3,7 +3,8 @@ export type TCard = {
   id_account: string;
 };
 export type TAccount = {
-  status: string;
+  email: string;
+  password: string;
 };
 export type TTransaction = {
   ammout: string;
