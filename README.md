@@ -24,8 +24,6 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 - [x] listar somente uma transação.
 - [x] gerar um pdf com dados de UMA transação.
 - [x] gerar um pdf com dados da conta E todas as transações de uma conta.
-- [ ] listar transações por um periodo. **NÃO incluido no desafio**
-- [ ] paginar transações. **NÃO incluido no desafio**
 
 ## relacionamentos
 
