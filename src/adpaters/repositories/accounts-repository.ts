@@ -35,4 +35,11 @@ export class PrismaAccountRepository {
     });
     return account;
   }
+  async deleteAccount(id_account: string) {
+    await prisma.account.delete({
+      where:{
+        id: id_account,
+      },
+    });
+  }
 }
