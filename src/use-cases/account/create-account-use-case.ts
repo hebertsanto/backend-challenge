@@ -27,4 +27,12 @@ export class CreateAccountUseCase {
     return await this.accountRepository.deleteAccount(id_account);
 
   }
+
+  async findAccountById(id_account: string) : Promise<Account | null> {
+    await this.checkAccountExistence(id_account);
+
+    const account = await this.accountRepository.findAccountById(id_account);
+
+    return account;
+  }
 }

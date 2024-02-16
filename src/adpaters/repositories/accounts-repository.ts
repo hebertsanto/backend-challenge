@@ -36,7 +36,7 @@ export class PrismaAccountRepository {
     });
     return account;
   }
-  async deleteAccount(id_account: string) {
+  async deleteAccount(id_account: string) : Promise<Account> {
     return await prisma.account.delete({
       where:{
         id: id_account,
