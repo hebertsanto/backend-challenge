@@ -1,7 +1,6 @@
 import { prisma } from '../database/prisma';
 import { TCard } from '../../helpers/types';
 import { Card } from '@prisma/client';
-import { CreateAccountUseCase } from '../../use-cases/account/create-account-use-case';
 
 export class PrismaCardsRepository {
   /**
@@ -11,11 +10,8 @@ export class PrismaCardsRepository {
    * @param { string } id_account - uuid of the card
    * @returns { Promise<TCard> }
    */
-  constructor(
-    private accountService: CreateAccountUseCase,
-  ) {}
+
   async create({ amount, id_account }: TCard) : Promise<Card> {
-    await this.accountService.checkAccountExistence(id_account);
     const create = await prisma.card.create({
       data: {
         amount,
@@ -47,7 +43,6 @@ export class PrismaCardsRepository {
    * @returns { Promise<TCard | null> }
    */
   async listCards(id: string) {
-    await this.accountService.checkAccountExistence(id);
     const listsOfCards = await prisma.card.findMany({
       where: {
         id_account: id,

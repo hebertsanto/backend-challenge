@@ -1,30 +1,20 @@
 import { Card } from '@prisma/client';
-import { PrismaAccountRepository } from '../../adpaters/repositories/accounts-repository';
 import { PrismaCardsRepository } from '../../adpaters/repositories/cards-repository';
-import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
 import { TCard } from '../../helpers/types';
+import { CreateAccountUseCase } from '../account/create-account-use-case';
 
 export class CreateCardUseCase {
-  constructor(private cardRepository: PrismaCardsRepository) {}
-  private accountRepository = new PrismaAccountRepository();
+  constructor(
+    private cardRepository: PrismaCardsRepository,
+    private accountService: CreateAccountUseCase
+  ) {}
 
   async create({ amount, id_account }: TCard) : Promise<Card> {
+    await this.accountService.checkAccountExistence(id_account);
     const createCard = await this.cardRepository.create({
       amount,
       id_account,
     });
-
-    const account = await this.accountRepository.findAccountById(id_account);
-
-    if (!account) {
-      throw new ParamDoesNotExist('id_account');
-    }
-    if (!amount) {
-      throw new MissingParamError('ammout');
-    }
-    if (!id_account) {
-      throw new MissingParamError('id_account');
-    }
     return createCard;
   }
 }

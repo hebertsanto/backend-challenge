@@ -4,8 +4,9 @@ import { CreateCardUseCase } from '../card/create-card-use-case';
 
 
 export async function makeCreateCard() {
-  const accountUseCase = new CreateAccountUseCase();
-  const prismaCardRepository = new PrismaCardsRepository(accountUseCase);
-  const createCardUseCase = new CreateCardUseCase(prismaCardRepository);
-  return createCardUseCase;
+  const accountService = new CreateAccountUseCase();
+  const prismaCardRepository = new PrismaCardsRepository();
+  const cardUseCase = new CreateCardUseCase(prismaCardRepository, accountService);
+
+  return cardUseCase;
 }
