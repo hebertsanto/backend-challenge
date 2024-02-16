@@ -1,13 +1,14 @@
+import { Card } from '@prisma/client';
 import { PrismaAccountRepository } from '../../adpaters/repositories/accounts-repository';
 import { PrismaCardsRepository } from '../../adpaters/repositories/cards-repository';
-import { ParamDoesNotExist, MissingParamError } from '../../helpers/error';
+import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
 import { TCard } from '../../helpers/types';
 
 export class CreateCardUseCase {
-  private cardRepository = new PrismaCardsRepository();
+  constructor(private cardRepository: PrismaCardsRepository) {}
   private accountRepository = new PrismaAccountRepository();
 
-  async create({ amount, id_account }: TCard) {
+  async create({ amount, id_account }: TCard) : Promise<Card> {
     const createCard = await this.cardRepository.create({
       amount,
       id_account,

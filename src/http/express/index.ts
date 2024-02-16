@@ -7,7 +7,7 @@ export class AppRoutes {
     const app = express();
     app.use(express.json());
     app.use(router);
-    app.use((error: ZodError, req: Request, res: Response) => {
+    app.use((error : Error, req: Request, res: Response) => {
       if (error instanceof ZodError) {
         return res.status(400).json({
           msg: 'some error validatin data',
@@ -16,7 +16,7 @@ export class AppRoutes {
       }
     });
 
-    app.listen(5000, () => {
+    app.listen(8888, () => {
       console.log('server is running');
     });
   }

@@ -1,5 +1,6 @@
 import { prisma } from '../database/prisma';
 import { TAccount } from '../../helpers/types';
+import { Account } from '@prisma/client';
 
 export class PrismaAccountRepository {
   /**
@@ -10,7 +11,7 @@ export class PrismaAccountRepository {
    *@returns {Promise<TAccount>} a promisse that resolves with the new account data
    */
 
-  async create({  email, password }: TAccount) {
+  async create({  email, password }: TAccount) : Promise<Account> {
     const createAccount = await prisma.account.create({
       data: {
         email,
@@ -24,10 +25,10 @@ export class PrismaAccountRepository {
    *find an account by id
    *findAccount|ById
    *@param {string} id_account - uuid of the account to be found
-   *@returns {Promise<TAccount | null>} - account to be found or null
+   *@returns {Promise<Account>} - account to be found or null
    */
 
-  async findAccountById(id_account: string) {
+  async findAccountById(id_account: string) : Promise<Account | null>  {
     const account = await prisma.account.findUnique({
       where: {
         id: id_account,
@@ -36,7 +37,7 @@ export class PrismaAccountRepository {
     return account;
   }
   async deleteAccount(id_account: string) {
-    await prisma.account.delete({
+    return await prisma.account.delete({
       where:{
         id: id_account,
       },
