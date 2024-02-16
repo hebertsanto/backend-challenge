@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { CreateAccountUseCase } from '../../../use-cases/account/create-account-use-case';
 import { ZodError, z } from 'zod';
+import { makeAccountUseCase } from '../../../use-cases/factories/make-create-account';
 
 /**
  * createAccountController
@@ -13,7 +13,7 @@ export const createAccountController = async (
   req: Request,
   res: Response,
 ) => {
-  const createAccountUseCase = new CreateAccountUseCase();
+  const createAccountUseCase = await makeAccountUseCase();
 
   const bodySchema = z.object({
     email: z.string(),

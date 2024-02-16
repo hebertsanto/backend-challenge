@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import {z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
-import { CreateAccountUseCase } from '../../../use-cases/account/create-account-use-case';
+import { makeAccountUseCase } from '../../../use-cases/factories/make-create-account';
 
 /**
  *deleteAccountController
@@ -14,7 +14,7 @@ export const deleteAccountController = async (
   req: Request,
   res: Response,
 ) => {
-  const accountUseCase = new CreateAccountUseCase();
+  const  makeAccount = await makeAccountUseCase();
 
   const paramsSchema = z.object({
     id: z.string()
@@ -22,7 +22,7 @@ export const deleteAccountController = async (
 
   try {
     const { id } = paramsSchema.parse(req.params);
-    await accountUseCase.deleteAccount(id);
+    await makeAccount.deleteAccount(id);
 
     return res.status(200).json({
       msg: 'account deleted successfully'
