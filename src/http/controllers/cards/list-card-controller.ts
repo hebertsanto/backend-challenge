@@ -24,18 +24,18 @@ export const listCardByIdController = async (
     const card = await listCardByIdUseCase.listCard(id);
 
     return res.status(200).json({
-      msg: 'card by id are here',
+      msg: 'card found successfully',
       card,
     });
   } catch (error) {
     if (error instanceof MissingParamError) {
       return res.json(400).json({
-        msg: 'some error ocurred',
+        msg: 'id card is required',
       });
     }
     if (error instanceof ParamDoesNotExist) {
       return res.json(400).json({
-        msg: 'id_account does not exist',
+        msg: 'id account does not exist',
       });
     }
   }

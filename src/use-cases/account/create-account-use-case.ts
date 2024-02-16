@@ -4,7 +4,9 @@ import { TAccount } from '../../helpers/types';
 import { Account } from '@prisma/client';
 
 export class CreateAccountUseCase {
+
   constructor(private accountRepository: PrismaAccountRepository) {}
+
   async checkAccountExistence(id_account: string) : Promise<Account | null> {
     const account = await this.accountRepository.findAccountById(id_account);
 

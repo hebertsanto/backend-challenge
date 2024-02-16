@@ -17,7 +17,7 @@ export const createAccountController = async (
 
   const bodySchema = z.object({
     email: z.string(),
-    password: z.string().min(6)
+    password: z.string().min(6, 'password must have at least 6 characters')
   });
 
   try {

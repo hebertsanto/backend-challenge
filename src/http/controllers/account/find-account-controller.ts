@@ -17,7 +17,7 @@ export const findAccountByIdController = async (
   const  makeFindAccount = await makeFindAccountUseCase();
 
   const paramsSchema = z.object({
-    id: z.string()
+    id: z.string().uuid()
   });
 
   try {
