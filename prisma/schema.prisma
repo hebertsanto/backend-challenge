@@ -12,23 +12,26 @@ datasource db {
 }
 
 model Account {
-  id     String  @id @default(uuid())
-  email String? @unique
-  password String?
-  cards  Card[]
+  id           String         @id @default(uuid())
+  email        String?        @unique
+  password     String?
+  cards        Card[]
+  transactions Transactions[]
 }
 
-model Transation {
-  id     String @id @default(uuid())
-  ammout String
-  card_id String
-  card Card @relation(fields: [card_id], references: [id])
+model Transactions {
+  id        String   @id @default(uuid())
+  ammout    String
+  card_id   String
+  card      Card     @relation(fields: [card_id], references: [id])
+  Account   Account? @relation(fields: [accountId], references: [id])
+  accountId String?
 }
 
-model Card{
-  id     String @id @default(uuid())
+model Card {
+  id         String         @id @default(uuid())
   id_account String
-  amount Int
-  trasations Transation[]
-  account Account @relation(fields: [id_account],references: [id])
+  amount     Int
+  trasations Transactions[]
+  account    Account        @relation(fields: [id_account], references: [id])
 }
