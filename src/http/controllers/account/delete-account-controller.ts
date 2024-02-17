@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import {z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
-import { makeAccountUseCase } from '../../../use-cases/factories/make-create-account';
+import { makeAccountUseCase } from '../../../use-cases/factories/account';
 
 /**
  *deleteAccountController

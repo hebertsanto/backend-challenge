@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import {z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
-import { makeFindAccountUseCase } from '../../../use-cases/factories/make-find-account';
-
+import { makeAccountUseCase } from '../../../use-cases/factories/account';
 /**
  *deleteAccountController
  * @param {Request } req request object express
@@ -14,7 +13,7 @@ export const findAccountByIdController = async (
   req: Request,
   res: Response,
 ) => {
-  const  makeFindAccount = await makeFindAccountUseCase();
+  const  makeFindAccount = await makeAccountUseCase();
 
   const paramsSchema = z.object({
     id: z.string().uuid()

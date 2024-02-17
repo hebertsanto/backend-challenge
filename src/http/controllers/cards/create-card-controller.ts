@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeCreateCard } from '../../../use-cases/factories/make-create-card';
+import { makeCreateCard } from '../../../use-cases/factories/card';
 import { ZodError, z } from 'zod';
 import { ParamDoesNotExist } from '../../../helpers/error';
 import { TCard } from '../../../helpers/types';

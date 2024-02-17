@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ZodError, z } from 'zod';
-import { makeAccountUseCase } from '../../../use-cases/factories/make-create-account';
+import { makeAccountUseCase } from '../../../use-cases/factories/account';
 
 /**
  * createAccountController
