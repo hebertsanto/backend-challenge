@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { ListCardsUseCase } from '../../../use-cases/card/list-all-cards-use-case';
 import { ZodError, z } from 'zod';
 import htmlPdf from 'html-pdf-node';
 import { TCard } from '../../../helpers/types';
+import { makeCardUseCase } from '../../../use-cases/factories/card';
 
 /**
  *listAllCardsController
@@ -14,15 +14,15 @@ export const listAllCardsController = async (
   req: Request,
   res: Response,
 ): Promise<TCard | unknown> => {
-  const listAllCardsUseCase = new ListCardsUseCase();
 
+  const makeListAllCards = await makeCardUseCase();
   const paramsSchema = z.object({
     id: z.string().uuid(),
   });
 
   try {
     const { id } = paramsSchema.parse(req.params);
-    const cards = await listAllCardsUseCase.listAllCards(id);
+    const cards = await makeListAllCards.listAllCards(id);
 
     let templateHtml = '';
 

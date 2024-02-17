@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListCardByIdUseCase } from '../../../use-cases/card/list-card-use-case';
+import { makeCardUseCase } from '../../../use-cases/factories/card';
 import { z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 import { TCard } from '../../../helpers/types';
@@ -14,7 +14,7 @@ export const listCardByIdController = async (
   req: Request,
   res: Response,
 ): Promise<TCard | unknown> => {
-  const listCardByIdUseCase = new ListCardByIdUseCase();
+  const listCardByIdUseCase = await makeCardUseCase();
 
   const paramsSchema = z.object({
     id: z.string().uuid(),

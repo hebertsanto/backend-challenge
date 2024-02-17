@@ -24,13 +24,13 @@ export class PrismaCardsRepository {
   /**
    *listCardById
    *this method find an card by id
-   * @param { string } id_account - uuid of the card
+   * @param { string } card_id - uuid of the card
    * @returns { Promise<TCard | null> }
    */
-  async listCardById(id: string) {
+  async listCardById(card_id: string) {
     const card = await prisma.card.findUnique({
       where: {
-        id: id,
+        id: card_id,
       },
     });
     return card;
@@ -42,10 +42,10 @@ export class PrismaCardsRepository {
    * @param { string } id_account - uuid of the account
    * @returns { Promise<TCard | null> }
    */
-  async listCards(id: string) {
+  async listCards(id_account: string) {
     const listsOfCards = await prisma.card.findMany({
       where: {
-        id_account: id,
+        id_account,
       },
       include: {
         trasations: true,
