@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
-import { ListTransactionByIdUseCase } from '../../../use-cases/transaction/list-transaction-use-case';
+import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 import { ParamDoesNotExist } from '../../../helpers/error';
 import { TTransaction } from '../../../helpers/types';
 
@@ -16,7 +16,7 @@ export const generatePdfTransaction = async (
   req: Request,
   res: Response,
 ): Promise<TTransaction | unknown> => {
-  const transtion = new ListTransactionByIdUseCase();
+  const transtion = await makeTransactionUseCase();
   const paramsShcema = z.object({
     id: z.string().uuid(),
   });

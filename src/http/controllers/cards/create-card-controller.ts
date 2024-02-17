@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeCreateCard } from '../../../use-cases/factories/card';
+import { makeCardUseCase } from '../../../use-cases/factories/card';
 import { ZodError, z } from 'zod';
 import { ParamDoesNotExist } from '../../../helpers/error';
 import { TCard } from '../../../helpers/types';
@@ -20,7 +20,7 @@ export const createCardController = async (
     amount: z.number(),
     id_account: z.string().uuid(),
   });
-  const makeCreateCardUseCase = await makeCreateCard();
+  const makeCreateCardUseCase = await makeCardUseCase();
   try {
     const { amount, id_account } = cardSchema.parse(req.body);
     const card = await makeCreateCardUseCase.create({ amount, id_account });

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListTransactionUseCase } from '../../../use-cases/transaction/list-all-transaction-use-case';
+import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 import { string, z } from 'zod';
 import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
 import { TTransaction} from '../../../helpers/types';
@@ -15,7 +15,7 @@ export const listAllTransactiontionController = async (
   req: Request,
   res: Response,
 ) : Promise<TTransaction| unknown>=> {
-  const listAllTransations = new ListTransactionUseCase();
+  const listAllTransations = await makeTransactionUseCase();
   const paramsSchema = z.object({
     id: string().uuid(),
   });
@@ -23,7 +23,7 @@ export const listAllTransactiontionController = async (
   try {
     const { id } = paramsSchema.parse(req.params);
 
-    const ListOftransation = await listAllTransations.listTransactions(id);
+    const ListOftransation = await listAllTransations.listTransations(id);
     return res.status(200).json({
       msg: 'all transations are available',
       ListOftransation,

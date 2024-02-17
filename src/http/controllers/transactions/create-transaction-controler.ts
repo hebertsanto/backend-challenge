@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { CreateTranscationUseCase } from '../../../use-cases/transaction/create-transaction-use-case';
 import { ZodError, z } from 'zod';
 import { ParamDoesNotExist } from '../../../helpers/error';
 import { TTransaction } from '../../../helpers/types';
+import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 
 /**
  *
@@ -14,8 +14,8 @@ export const createTransationController = async (
   req: Request,
   res: Response,
 ) : Promise<TTransaction | unknown> => {
-  const createTransationUseCase = new CreateTranscationUseCase();
 
+  const makeTransaction = await makeTransactionUseCase();
   const transaction = z.object({
     ammout: z.string(),
     card_id: z.string().uuid(),
@@ -24,7 +24,7 @@ export const createTransationController = async (
   try {
     const { ammout, card_id } = transaction.parse(req.body);
 
-    const transation = await createTransationUseCase.create({
+    const transation = await makeTransaction.create({
       ammout,
       card_id,
     });
