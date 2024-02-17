@@ -1,12 +1,14 @@
-import { PrismaCardsRepository } from '../../adpaters/repositories/cards-repository';
-import { PrismaTransitionRepository } from '../../adpaters/repositories/transaction-repository';
+import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
+import { PrismaTransactionRepository } from '../../adpaters/repositories/prisma/prisma-transaction';
 import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
 import { TTransaction } from '../../helpers/types';
 
 export class CreateTranscationUseCase {
-  private transitionRepository = new PrismaTransitionRepository();
-  private cardRepository = new PrismaCardsRepository();
 
+  constructor(
+    private cardRepository: PrismaCardsRepository,
+    private transactionRepository: PrismaTransactionRepository
+  ) {}
   /**
    *create
    * @param { string } ammout -value of transaction
@@ -26,7 +28,7 @@ export class CreateTranscationUseCase {
     if (!cardExist) {
       throw new ParamDoesNotExist('card_id');
     }
-    const createTransition = await this.transitionRepository.create({
+    const createTransition = await this.transactionRepository.create({
       ammout,
       card_id,
     });
@@ -41,7 +43,7 @@ export class CreateTranscationUseCase {
 
   async findById(transaction_id: string) {
     const transition =
-      await this.transitionRepository.findTransactionById(transaction_id);
+      await this.transactionRepository.findTransactionById(transaction_id);
     if (!transaction_id) {
       throw new MissingParamError('transaction_id');
     }
@@ -58,7 +60,7 @@ export class CreateTranscationUseCase {
    */
   async listTransations(transaction_id: string) {
     const listOfTransition =
-      await this.transitionRepository.listTransactions(transaction_id);
+      await this.transactionRepository.listTransactions(transaction_id);
 
     return listOfTransition;
   }

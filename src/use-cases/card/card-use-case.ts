@@ -1,5 +1,5 @@
 import { Card } from '@prisma/client';
-import { PrismaCardsRepository } from '../../adpaters/repositories/cards-repository';
+import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
 import { TCard } from '../../helpers/types';
 import { CreateAccountUseCase } from '../account/create-account-use-case';
 import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
