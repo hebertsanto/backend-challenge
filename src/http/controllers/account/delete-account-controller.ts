@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {z } from 'zod';
-import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../../helpers/error';
 import { makeAccountUseCase } from '../../../use-cases/factories/account';
 
 /**
@@ -29,7 +29,7 @@ export const deleteAccountController = async (
     });
 
   } catch (error) {
-    if (error instanceof ParamDoesNotExist) {
+    if (error instanceof NotFoundResource) {
       return res.status(400).json({
         msg: 'id account does not exist'
       });

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { ZodError, z } from 'zod';
-import htmlPdf from 'html-pdf-node';
 import { TCard } from '../../../helpers/types';
 import { makeCardUseCase } from '../../../use-cases/factories/card';
+
 
 /**
  *listAllCardsController
@@ -20,61 +20,17 @@ export const listAllCardsController = async (
     id: z.string().uuid(),
   });
 
+  const { id } = paramsSchema.parse(req.params);
+
   try {
-    const { id } = paramsSchema.parse(req.params);
+
     const cards = await makeListAllCards.listAllCards(id);
 
-    let templateHtml = '';
-
-    cards.forEach((card) => {
-      templateHtml += `
-       <h3>conta : ${card.id_account}</h3>
-      `;
-      card.trasations.forEach((transaction) => {
-        templateHtml += `
-         <table style="text-align:left;">
-          <thead>
-           <th>
-            ID TRANSAÇÃO
-           </th>
-           <th>
-           TRANSAÇÃO
-          </th>
-           <th>
-           VALOR
-          </th>
-          </thead>
-          <tbody>
-           <tr>
-            <td style="text-align:left;">
-              ${transaction.id}
-            </td>
-            <td style="text-align:left;">
-             Netflix
-          </td>
-            <td style="text-align:left;">
-            ${transaction.ammout}
-            </td>
-           </tr>
-          </tbody>
-         </table>
-        `;
-      });
+    return res.status(200).json({
+      msg: 'all cards user ',
+      cards
     });
 
-    const options = { format: 'A4' };
-    const template = {
-      content: `
-    <body>
-    <h1>DADOS DA SUA CONTA.</h1>
-     ${templateHtml}
-    </body>
-    `,
-    };
-
-    res.contentType('application/pdf');
-    const pdf = await htmlPdf.generatePdf(template, options);
-    return res.send(pdf);
   } catch (error) {
     if (error instanceof ZodError) {
       return res.json(400).json({

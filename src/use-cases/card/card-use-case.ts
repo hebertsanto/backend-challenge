@@ -2,7 +2,7 @@ import { Card } from '@prisma/client';
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
 import { TCard } from '../../helpers/types';
 import { CreateAccountUseCase } from '../account/create-account-use-case';
-import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../helpers/error';
 
 export class CreateCardUseCase {
 
@@ -29,11 +29,11 @@ export class CreateCardUseCase {
     return createCard;
   }
 
-  async listAllCards(id_account: string) {
+  async listAllCards(id_account: string) : Promise<Card[]> {
     const account = await this.accountService.findAccountById(id_account);
 
     if (!account) {
-      throw new ParamDoesNotExist('id_account');
+      throw new NotFoundResource('id_account');
     }
     const cards = await this.cardRepository.listCards(id_account);
 
@@ -46,7 +46,7 @@ export class CreateCardUseCase {
   async listCard(card_id: string) {
     const card = await this.cardRepository.listCardById(card_id);
     if (!card) {
-      throw new ParamDoesNotExist('card_id');
+      throw new NotFoundResource('card_id');
     }
     if (!card_id) {
       throw new MissingParamError('card_id');

@@ -1,6 +1,6 @@
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
 import { PrismaTransactionRepository } from '../../adpaters/repositories/prisma/prisma-transaction';
-import { MissingParamError, ParamDoesNotExist } from '../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../helpers/error';
 import { TTransaction } from '../../helpers/types';
 
 export class CreateTranscationUseCase {
@@ -26,7 +26,7 @@ export class CreateTranscationUseCase {
     const cardExist = await this.cardRepository.listCardById(card_id);
 
     if (!cardExist) {
-      throw new ParamDoesNotExist('card_id');
+      throw new NotFoundResource('card_id');
     }
     const createTransition = await this.transactionRepository.create({
       ammout,
@@ -48,7 +48,7 @@ export class CreateTranscationUseCase {
       throw new MissingParamError('transaction_id');
     }
     if (!transition) {
-      throw new ParamDoesNotExist('transaction_id');
+      throw new NotFoundResource('transaction_id');
     }
     return transition;
   }

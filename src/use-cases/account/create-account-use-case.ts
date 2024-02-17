@@ -1,5 +1,5 @@
 import { PrismaAccountRepository } from '../../adpaters/repositories/prisma/prisma-account-repository';
-import { ParamDoesNotExist } from '../../helpers/error';
+import { NotFoundResource } from '../../helpers/error';
 import { TAccount } from '../../helpers/types';
 import { Account } from '@prisma/client';
 
@@ -11,7 +11,7 @@ export class CreateAccountUseCase {
     const account = await this.accountRepository.findById(id_account);
 
     if (!account) {
-      throw new ParamDoesNotExist(`this account ${id_account} does not exist`);
+      throw new NotFoundResource(`this account ${id_account} does not exist`);
     }
     return account;
   }

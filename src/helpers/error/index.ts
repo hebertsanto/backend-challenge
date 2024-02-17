@@ -3,7 +3,7 @@ export class MissingParamError extends Error {
     super(`missing parameter ${param}`);
   }
 }
-export class ParamDoesNotExist extends Error {
+export class NotFoundResource extends Error {
   constructor(param: string) {
     super(`this ${param} does not exist`);
   }

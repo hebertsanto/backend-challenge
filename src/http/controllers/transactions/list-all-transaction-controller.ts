@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 import { string, z } from 'zod';
-import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../../helpers/error';
 import { TTransaction} from '../../../helpers/types';
 
 /**
@@ -29,7 +29,7 @@ export const listAllTransactiontionController = async (
       ListOftransation,
     });
   } catch (error) {
-    if (error instanceof ParamDoesNotExist) {
+    if (error instanceof NotFoundResource) {
       return res.status(400).json({
         msg: 'transaction does not Exist',
         error,

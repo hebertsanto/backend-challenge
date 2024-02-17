@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ZodError, z } from 'zod';
-import { ParamDoesNotExist } from '../../../helpers/error';
+import { NotFoundResource  } from '../../../helpers/error';
 import { TTransaction } from '../../../helpers/types';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 
@@ -34,7 +34,7 @@ export const createTransationController = async (
       transation,
     });
   } catch (error) {
-    if (error instanceof ParamDoesNotExist) {
+    if (error instanceof NotFoundResource) {
       return res.status(400).json({
         msg: 'this card id does not exist',
       });

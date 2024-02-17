@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { makeCardUseCase } from '../../../use-cases/factories/card';
 import { z } from 'zod';
-import { MissingParamError, ParamDoesNotExist } from '../../../helpers/error';
+import { MissingParamError, NotFoundResource} from '../../../helpers/error';
 import { TCard } from '../../../helpers/types';
 
 /**
@@ -33,7 +33,7 @@ export const listCardByIdController = async (
         msg: 'id card is required',
       });
     }
-    if (error instanceof ParamDoesNotExist) {
+    if (error instanceof NotFoundResource) {
       return res.json(400).json({
         msg: 'id account does not exist',
       });

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
-import { ParamDoesNotExist } from '../../../helpers/error';
+import { NotFoundResource } from '../../../helpers/error';
 import { TTransaction } from '../../../helpers/types';
 
 /**
@@ -40,7 +40,7 @@ export const generatePdfTransaction = async (
 
     return res.send(fileGenerated);
   } catch (error) {
-    if (error instanceof ParamDoesNotExist) {
+    if (error instanceof NotFoundResource) {
       return res.status(400).json({
         msg: 'transaction not found on database',
         error,
