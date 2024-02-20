@@ -8,7 +8,8 @@
     "lint": "prettier --write .",
     "fix": "npm run eslint --fix .",
     "prepare": "husky",
-    "test": "jest"
+    "test": "jest",
+    "prod": "jest e2e"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,7 @@
     "@types/html-pdf-node": "^1.0.2",
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.5",
+    "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "bcrypt": "^5.1.1",
@@ -45,6 +47,7 @@
     "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.0.3",
+    "supertest": "^6.3.4",
     "ts-jest": "^29.1.2"
   }
 }
