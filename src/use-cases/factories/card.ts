@@ -8,6 +8,11 @@ export async function makeCardUseCase() {
   const prismaAccountRepository = new PrismaAccountRepository();
   const accountService = new CreateAccountUseCase(prismaAccountRepository);
   const prismaCardRepository = new PrismaCardsRepository();
-  const cardUseCase = new CreateCardUseCase(prismaCardRepository, accountService);
+
+  const cardUseCase = new CreateCardUseCase(
+    prismaCardRepository,
+    accountService
+  );
+
   return cardUseCase;
 }

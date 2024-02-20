@@ -24,7 +24,7 @@ export const findAccountByIdController = async (
     const account = await makeFindAccount.findAccountById(id);
 
     return res.status(200).json({
-      msg: 'account deleted successfully',
+      msg: 'account found successfully',
       account
     });
 

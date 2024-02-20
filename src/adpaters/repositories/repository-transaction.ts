@@ -1,7 +1,7 @@
-import { Transation, Prisma } from '@prisma/client';
+import { Transactions, Prisma } from '@prisma/client';
 
 export interface TransactionRepository{
-  create(data: Prisma.TransationUncheckedCreateInput): Promise<Transation>
-  findTransactionById(id: string): Promise<Transation | null>
-  listTransactions(card_id : string): Promise<Transation[]>
+  create(data: Prisma.TransactionsUncheckedCreateInput): Promise<Transactions>
+  findTransactionById(id: string): Promise<Transactions | null>
+  listTransactions(card_id : string): Promise<Transactions[]>
 }

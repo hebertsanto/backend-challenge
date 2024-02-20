@@ -2,12 +2,14 @@ import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma
 import { PrismaTransactionRepository } from '../../adpaters/repositories/prisma/prisma-transaction';
 import { MissingParamError, NotFoundResource } from '../../helpers/error';
 import { TTransaction } from '../../helpers/types';
+import { CreateCardUseCase } from '../card/card-use-case';
 
 export class CreateTranscationUseCase {
 
   constructor(
     private cardRepository: PrismaCardsRepository,
-    private transactionRepository: PrismaTransactionRepository
+    private transactionRepository: PrismaTransactionRepository,
+    private createCard: CreateCardUseCase
   ) {}
   /**
    *create
@@ -26,7 +28,7 @@ export class CreateTranscationUseCase {
     const cardExist = await this.cardRepository.listCardById(card_id);
 
     if (!cardExist) {
-      throw new NotFoundResource('card_id');
+      throw new NotFoundResource(`${card_id}`);
     }
     const createTransition = await this.transactionRepository.create({
       ammout,
@@ -45,10 +47,10 @@ export class CreateTranscationUseCase {
     const transition =
       await this.transactionRepository.findTransactionById(transaction_id);
     if (!transaction_id) {
-      throw new MissingParamError('transaction_id');
+      throw new MissingParamError(`${transaction_id}`);
     }
     if (!transition) {
-      throw new NotFoundResource('transaction_id');
+      throw new NotFoundResource(`${transaction_id}`);
     }
     return transition;
   }
@@ -58,10 +60,10 @@ export class CreateTranscationUseCase {
    * @param { string } transaction_id
    * @returns { Promise<TTransaction[] | null>} returns list of transactions | null
    */
-  async listTransations(transaction_id: string) {
+  async listTransations(card_id: string) {
     const listOfTransition =
-      await this.transactionRepository.listTransactions(transaction_id);
-
+      await this.transactionRepository.listTransactions(card_id);
+    await this.createCard.listCard(card_id);
     return listOfTransition;
   }
 }

@@ -3,6 +3,9 @@ import { router } from '../../routes';
 import { ZodError } from 'zod';
 
 export class AppRoutes {
+
+  private static instance: express.Application;
+
   static initialize() {
     const app = express();
     app.use(express.json());
@@ -16,8 +19,17 @@ export class AppRoutes {
       }
     });
 
-    app.listen(8888, () => {
+    app.listen(8080, () => {
       console.log('server is running');
     });
+
+    this.instance = app;
+  }
+  static getInstance(): express.Application {
+    if (!this.instance) {
+      throw new Error('Application not initialized. Call initialize() first.');
+    }
+
+    return this.instance;
   }
 }
