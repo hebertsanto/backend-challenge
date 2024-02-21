@@ -2,12 +2,6 @@ import { Request, Response } from 'express';
 import {z } from 'zod';
 import { MissingParamError, NotFoundResource } from '../../../helpers/error';
 import { makeAccountUseCase } from '../../../use-cases/factories/account';
-/**
- *deleteAccountController
- * @param {Request } req request object express
- * @param {Response } res response object express
- * @returns { Promise<TAccount | null>} promise to be solved
- */
 
 export const findAccountByIdController = async (
   req: Request,

@@ -3,13 +3,6 @@ import {z } from 'zod';
 import { MissingParamError, NotFoundResource } from '../../../helpers/error';
 import { makeAccountUseCase } from '../../../use-cases/factories/account';
 
-/**
- *deleteAccountController
- * @param {Request } req request object express
- * @param {Response } res response object express
- * @returns { Promise<TTransaction | unknown>} promise to be solved
- */
-
 export const deleteAccountController = async (
   req: Request,
   res: Response,

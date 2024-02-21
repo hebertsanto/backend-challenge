@@ -2,13 +2,6 @@ import { Request, Response } from 'express';
 import { ZodError, z } from 'zod';
 import { makeAccountUseCase } from '../../../use-cases/factories/account';
 
-/**
- * createAccountController
- * @param {Request } req -request object express
- * @param {Response } res response object express
- * @returns
- */
-
 export const createAccountController = async (
   req: Request,
   res: Response,

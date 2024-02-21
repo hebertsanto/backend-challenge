@@ -4,12 +4,6 @@ import { NotFoundResource  } from '../../../helpers/error';
 import { TTransaction } from '../../../helpers/types';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 
-/**
- *
- * @param {Request } req request object express
- * @param {Response } res response object express
- * @returns { Promise<TTransaction>} Promise resolved
- */
 export const createTransationController = async (
   req: Request,
   res: Response,

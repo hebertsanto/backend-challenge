@@ -11,12 +11,7 @@ export class CreateTranscationUseCase {
     private transactionRepository: PrismaTransactionRepository,
     private createCard: CreateCardUseCase
   ) {}
-  /**
-   *create
-   * @param { string } ammout -value of transaction
-   * @param { string } card_id
-   * @returns { Promise<TTransaction>}
-   */
+
   async create({ ammout, card_id }: TTransaction) {
     if (!ammout) {
       throw new MissingParamError('ammout');
@@ -37,12 +32,6 @@ export class CreateTranscationUseCase {
     return createTransition;
   }
 
-  /**
-   *findById
-   * @param { string } transaction_id
-   * @returns { Promise<TTransaction | null> } retun a transaction | null
-   */
-
   async findById(transaction_id: string) {
     const transition =
       await this.transactionRepository.findTransactionById(transaction_id);
@@ -55,11 +44,6 @@ export class CreateTranscationUseCase {
     return transition;
   }
 
-  /**
-   *listTransations
-   * @param { string } transaction_id
-   * @returns { Promise<TTransaction[] | null>} returns list of transactions | null
-   */
   async listTransations(card_id: string) {
     const listOfTransition =
       await this.transactionRepository.listTransactions(card_id);

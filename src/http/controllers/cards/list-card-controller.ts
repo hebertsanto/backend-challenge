@@ -2,18 +2,11 @@ import { Request, Response } from 'express';
 import { makeCardUseCase } from '../../../use-cases/factories/card';
 import { z } from 'zod';
 import { MissingParamError, NotFoundResource} from '../../../helpers/error';
-import { TCard } from '../../../helpers/types';
 
-/**
- *listCardByIdController
- * @param { Request } req request object express
- * @param { Response } res response object express
- * @returns { Promise<TCard>} Promise to be resolved
- */
 export const listCardByIdController = async (
   req: Request,
   res: Response,
-): Promise<TCard | unknown> => {
+) => {
   const listCardByIdUseCase = await makeCardUseCase();
 
   const paramsSchema = z.object({

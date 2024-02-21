@@ -2,18 +2,11 @@ import { Request, Response } from 'express';
 import { makeCardUseCase } from '../../../use-cases/factories/card';
 import { ZodError, z } from 'zod';
 import { NotFoundResource } from '../../../helpers/error';
-import { TCard } from '../../../helpers/types';
 
-/**
- *createCardController
- * @param { Request } req request object express
- * @param { Response } res response object express
- * @returns { Promise<TCard>} Promise to be resolved
- */
 export const createCardController = async (
   req: Request,
   res: Response,
-): Promise<TCard | unknown> => {
+) => {
 
 
   const cardSchema = z.object({

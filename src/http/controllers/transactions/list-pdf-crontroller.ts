@@ -3,19 +3,11 @@ import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 import { NotFoundResource } from '../../../helpers/error';
-import { TTransaction } from '../../../helpers/types';
-
-/**
- *generatePdfTransaction
- * @param {Request } req request object express
- * @param {Response } res response object express
- * @returns { Promise<TTransaction | unknown>} promise to be solved
- */
 
 export const generatePdfTransaction = async (
   req: Request,
   res: Response,
-): Promise<TTransaction | unknown> => {
+)  => {
   const transtion = await makeTransactionUseCase();
   const paramsShcema = z.object({
     id: z.string().uuid(),

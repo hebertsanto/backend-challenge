@@ -11,15 +11,8 @@ export class CreateCardUseCase {
     private accountService: CreateAccountUseCase
   ) {}
 
-  /**
-   *create
-   * @param { string } card
-   * @param { string } id_account
-   * @returns { Promise<Card>}
-   */
   async create({ amount, id_account }: TCard) : Promise<Card> {
 
-    //verify if account exists
     await this.accountService.checkAccountExistence(id_account);
 
     const createCard = await this.cardRepository.create({
