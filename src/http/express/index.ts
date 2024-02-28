@@ -1,6 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { router } from '../../routes';
-import { ZodError } from 'zod';
+import { zodErrorMiddleware } from '../middlewares/zod-error';
 
 export class AppRoutes {
 
@@ -10,17 +10,12 @@ export class AppRoutes {
     const app = express();
     app.use(express.json());
     app.use(router);
-    app.use((error : Error, req: Request, res: Response) => {
-      if (error instanceof ZodError) {
-        return res.status(400).json({
-          msg: 'some error validatin data',
-          error,
-        });
-      }
-    });
+    app.use(zodErrorMiddleware);
 
-    app.listen(8080, () => {
-      console.log('server is running');
+    const port = process.env.PORT;
+
+    app.listen(port, () => {
+      return `server is runnning ${port}`;
     });
 
     this.instance = app;
