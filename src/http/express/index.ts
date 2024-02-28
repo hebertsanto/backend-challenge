@@ -1,6 +1,7 @@
 import express from 'express';
 import { router } from '../../routes';
 import { zodErrorMiddleware } from '../middlewares/zod-error';
+import { logsMiddleware } from '../middlewares/logs';
 
 export class AppRoutes {
 
@@ -11,6 +12,7 @@ export class AppRoutes {
     app.use(express.json());
     app.use(router);
     app.use(zodErrorMiddleware);
+    app.use(logsMiddleware);
 
     const port = process.env.PORT;
 
