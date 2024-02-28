@@ -23,7 +23,7 @@ export class CreateCardUseCase {
   }
 
   async listAllCards(id_account: string) : Promise<Card[]> {
-    const account = await this.accountService.findAccountById(id_account);
+    const account = await this.accountService.checkAccountExistence(id_account);
 
     if (!account) {
       throw new NotFoundResource('id_account');
