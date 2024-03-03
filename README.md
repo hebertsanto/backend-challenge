@@ -75,8 +75,8 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 - **GET** `/card/:id` pega um cartão específco.
 - **GET** `/card/:id/file` pega informações da conta e todas as transações
 
-- na resposta da rota `/card/:id/file`
+### na resposta da rota `/card/:id/file`
 
-#### será retornado um arquvio pdf neste formato :
+#### será retornado um arquvo PDF neste formato :
 
 ![account](https://github.com/hebertsanto/challange-backend/assets/108555424/6c86cc71-fd64-4614-b43a-ccf4e3a59d3e)
