@@ -77,6 +77,6 @@ o desafio era pra ser feito em golang, porém resolvi fazer em node.
 
 ### na resposta da rota `/card/:id/file`
 
-#### será retornado um arquvo PDF neste formato :
+#### será retornado um arquivo PDF neste formato :
 
 ![account](https://github.com/hebertsanto/challange-backend/assets/108555424/6c86cc71-fd64-4614-b43a-ccf4e3a59d3e)
