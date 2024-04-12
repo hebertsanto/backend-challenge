@@ -23,19 +23,19 @@ export const createTransationController = async (
       card_id,
     });
 
-    return res.status(200).json({
-      msg: 'transation created successfully',
+    return res.status(201).json({
+      msg: 'Transaction created successfully',
       transation,
     });
   } catch (error) {
     if (error instanceof NotFoundResource) {
       return res.status(400).json({
-        msg: 'this card id does not exist',
+        msg: 'This card id does not exist',
       });
     }
     if (error instanceof ZodError) {
       return res.status(400).json({
-        msg: 'error validating data',
+        msg: 'Error validating data',
         error,
       });
     }

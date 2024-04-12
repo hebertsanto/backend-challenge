@@ -19,19 +19,19 @@ export const createCardController = async (
     const card = await makeCreateCardUseCase.create({ amount, id_account });
 
     return res.status(201).json({
-      msg: 'card created successfully',
+      msg: 'Card created successfully',
       card,
     });
   } catch (error) {
     if (error instanceof ZodError) {
       return res.status(400).json({
-        msg: 'error validating data',
+        msg: 'Error validating data',
         error
       });
     }
     if (error instanceof NotFoundResource) {
-      return res.status(400).json({
-        msg: 'id account does not exist',
+      return res.status(404).json({
+        msg: 'Id account does not exist',
         error,
       });
     }

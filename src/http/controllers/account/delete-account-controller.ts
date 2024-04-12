@@ -18,18 +18,18 @@ export const deleteAccountController = async (
     await makeAccount.deleteAccount(id);
 
     return res.status(200).json({
-      msg: 'account deleted successfully'
+      msg: 'Account deleted successfully'
     });
 
   } catch (error) {
     if (error instanceof NotFoundResource) {
       return res.status(400).json({
-        msg: 'id account does not exist'
+        msg: 'Id account does not exist'
       });
     }
     if (error instanceof MissingParamError) {
       return res.status(400).json({
-        msg: 'id account is required',
+        msg: 'Id account is required',
         error,
       });
     }

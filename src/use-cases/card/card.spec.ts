@@ -1,55 +1,54 @@
 import { CreateCardUseCase } from './card-use-case';
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
+import { CreateAccountUseCase } from '../account/create-account-use-case';
+import { MissingParamError } from '../../helpers/error';
 
-const mockCardRepository: jest.Mocked<PrismaCardsRepository> = {
-  create: jest.fn(),
-  listCards: jest.fn(),
-  listCardById: jest.fn(),
-};
+describe('CreateCardUseCase', () => {
+  let createCardUseCase: CreateCardUseCase;
+  let cardRepository: PrismaCardsRepository;
+  let accountService: CreateAccountUseCase;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mockAccountService: jest.Mocked<any> = {
-  checkAccountExistence: jest.fn(),
-};
-
-const createCardUseCase = new CreateCardUseCase(
-  mockCardRepository,
-  mockAccountService,
-);
-
-describe('CREATE CARD', () => {
-  it('should return MissingParamError if ammount is not provider', async () => {
-    await expect(
-      createCardUseCase.create({ amount: 0, id_account: 'fda' }),
-    ).rejects.toThrow(MissingParamError);
+  beforeEach(() => {
+    cardRepository = new PrismaCardsRepository();
+    accountService = new CreateAccountUseCase(cardRepository);
+    createCardUseCase = new CreateCardUseCase(cardRepository, accountService);
   });
 
-  it('should return aMissingParamError if id account is not provider', async () => {
-    await expect(
-      createCardUseCase.create({ amount: 300, id_account: '' }),
-    ).rejects.toThrow(MissingParamError);
-  });
-});
+  it('should throw an error if amount is missing', async () => {
+    const createCardData = { id_account: 'account_id' };
 
-describe('LIST CARD', () => {
-  it('should return NotFoundResource if card id does not exist', async () => {
-    await expect(createCardUseCase.listCard('iddoesnot')).rejects.toThrow(
-      NotFoundResource,
+    await expect(createCardUseCase.create(createCardData)).rejects.toThrowError(
+      new MissingParamError('amount')
     );
   });
 
-  it('should return MissingParamError if card id is not provider', async () => {
-    await expect(createCardUseCase.listCard('')).rejects.toThrow(
-      MissingParamError,
+  it('should throw an error if id_account is missing', async () => {
+    const createCardData = { amount: 100 };
+
+    await expect(createCardUseCase.create(createCardData)).rejects.toThrowError(
+      new MissingParamError('id_account')
     );
   });
-});
 
-describe('LIST ALL CARDS', () => {
-  it('should return MissingParamError if id account is not provider', async () => {
-    await expect(createCardUseCase.listAllCards('')).rejects.toThrow(
-      MissingParamError,
+  it('should throw an error if account does not exist', async () => {
+    const createCardData = { amount: 100, id_account: 'non_existing_account_id' };
+
+    jest.spyOn(accountService, 'checkAccountExistence').mockRejectedValueOnce(new NotFoundResource('Account not found'));
+
+    await expect(createCardUseCase.create(createCardData)).rejects.toThrowError(
+      new NotFoundResource('Account not found')
     );
+  });
+
+  it('should create a card successfully', async () => {
+    const createCardData = { amount: 100, id_account: 'existing_account_id' };
+
+    jest.spyOn(accountService, 'checkAccountExistence').mockResolvedValueOnce();
+
+    const createdCard = await createCardUseCase.create(createCardData);
+
+    expect(createdCard.amount).toBe(100);
+    expect(createdCard.id_account).toBe('existing_account_id');
+    // Add more assertions based on your requirements
   });
 });

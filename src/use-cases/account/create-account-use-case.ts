@@ -17,6 +17,7 @@ export class CreateAccountUseCase {
     if (!account) {
       throw new NotFoundResource(`this account ${id_account} does not exist`);
     }
+
     return account;
   }
 

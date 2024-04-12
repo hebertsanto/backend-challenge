@@ -5,11 +5,10 @@ import { TTransaction } from '../../helpers/types';
 import { CreateCardUseCase } from '../card/card-use-case';
 
 export class CreateTranscationUseCase {
-
   constructor(
     private cardRepository: PrismaCardsRepository,
     private transactionRepository: PrismaTransactionRepository,
-    private createCard: CreateCardUseCase
+    private createCard: CreateCardUseCase,
   ) {}
 
   async create({ ammout, card_id }: TTransaction) {

@@ -2,15 +2,14 @@ import { Request, Response } from 'express';
 import { ZodError, z } from 'zod';
 import { makeAccountUseCase } from '../../../use-cases/factories/account';
 
-export const createAccountController = async (
-  req: Request,
-  res: Response,
-) => {
+export const createAccountController = async (req: Request, res: Response) => {
   const createAccountUseCase = await makeAccountUseCase();
 
   const bodySchema = z.object({
-    email: z.string(),
-    password: z.string().min(8, 'password must have at least 6 characters')
+    email: z.string().email({ message: 'Must be a valid email' }),
+    password: z
+      .string()
+      .min(8, { message: 'Password must have at least 6 characters' }),
   });
 
   try {
@@ -18,15 +17,15 @@ export const createAccountController = async (
 
     const account = await createAccountUseCase.create({ email, password });
 
-    return res.status(200).json({
-      msg: 'account created successfully',
+    return res.status(201).json({
+      msg: 'Account created successfully',
       account,
     });
   } catch (error) {
     if (error instanceof ZodError) {
       return res.json({
-        msg:'error validating data',
-        error
+        msg: 'Error validating data',
+        error,
       });
     }
   }

@@ -2,9 +2,10 @@ import express from 'express';
 import { router } from '../../routes';
 import { zodErrorMiddleware } from '../middlewares/zod-error';
 import { logsMiddleware } from '../middlewares/logs';
+import { env } from '../../env/env';
+import { logger } from '../../logger';
 
 export class AppRoutes {
-
   private static instance: express.Application;
 
   static initialize() {
@@ -14,10 +15,11 @@ export class AppRoutes {
     app.use(zodErrorMiddleware);
     app.use(logsMiddleware);
 
-    const port = process.env.PORT;
-
-    app.listen(port, () => {
-      return `server is runnning ${port}`;
+    app.listen(env.PORT, () => {
+      return logger.log({
+        level: 'info',
+        message: 'Server is running'
+      });
     });
 
     this.instance = app;
