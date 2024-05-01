@@ -1,32 +1,29 @@
-import express from 'express';
+import express, { Express } from 'express';
 import { v1Router } from '../../routes';
 import { zodErrorMiddleware } from '../middlewares/zod-error';
 import { logsMiddleware } from '../middlewares/logs';
+import { logger } from '../../helpers/logger';
 
 export class AppRoutes {
-  private static instance: express.Application;
+  private expressApp: Express;
 
-  static initialize() {
-    const app = express();
-    app.use(express.json());
-    app.use(v1Router);
-    app.use(zodErrorMiddleware);
-    app.use(logsMiddleware);
-
-    const port = process.env.PORT;
-
-    app.listen(port, () => {
-      return `server is runnning ${port}`;
-    });
-
-    this.instance = app;
+  constructor() {
+    this.expressApp = express();
+    this.middlewares();
+    this.routes();
   }
 
-  static getInstance(): express.Application {
-    if (!this.instance) {
-      throw new Error('Application not initialized. Call initialize() first.');
-    }
+  private middlewares(): void {
+    this.expressApp.use(zodErrorMiddleware);
+    this.expressApp.use(logsMiddleware);
+  }
 
-    return this.instance;
+  private routes() {
+    this.expressApp.use(v1Router);
+  }
+  public start(port: number) {
+    this.expressApp.listen(port, () => {
+      logger.info('Sever is running !');
+    });
   }
 }
