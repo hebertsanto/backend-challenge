@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
 import { makeCardUseCase } from '../../../use-cases/factories/card';
-import { ZodError, z } from 'zod';
+import { ZodError } from 'zod';
 import { NotFoundResource } from '../../../helpers/error';
 import { HttpStatus } from '../../../helpers/http/status-code';
+import { validateBody } from '../../middlewares/validate-body';
+import { createCardValidationSchema } from '../../../helpers/validations/schemas';
 
 export const createCardController = async (req: Request, res: Response) => {
-  const cardSchema = z.object({
-    amount: z.number(),
-    id_account: z.string().uuid(),
-  });
   const makeCreateCardUseCase = await makeCardUseCase();
+
+  const { amount, id_account } = req.body;
+
   try {
-    const { amount, id_account } = cardSchema.parse(req.body);
     const card = await makeCreateCardUseCase.create({ amount, id_account });
 
     return res.status(HttpStatus.Create).json({
@@ -33,3 +33,8 @@ export const createCardController = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const createCardHandler = [
+  validateBody(createCardValidationSchema),
+  createCardController,
+];

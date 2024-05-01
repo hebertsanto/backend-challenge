@@ -1,18 +1,14 @@
 import { Request, Response } from 'express';
-import { ZodError, z } from 'zod';
+import { ZodError } from 'zod';
 import { makeAccountUseCase } from '../../../use-cases/factories/account';
 import { HttpStatus } from '../../../helpers/http/status-code';
+import { validateBody } from '../../middlewares/validate-body';
+import { createAccountValidationSchema } from '../../../helpers/validations/schemas';
 
 export const createAccountController = async (req: Request, res: Response) => {
   const createAccountUseCase = await makeAccountUseCase();
-
-  const bodySchema = z.object({
-    email: z.string(),
-    password: z.string().min(8, 'Password must have at least 6 characters'),
-  });
-
   try {
-    const { email, password } = bodySchema.parse(req.body);
+    const { email, password } = req.body;
 
     const account = await createAccountUseCase.create({ email, password });
 
@@ -29,3 +25,8 @@ export const createAccountController = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const createAccountHandler = [
+  validateBody(createAccountValidationSchema),
+  createAccountController,
+];

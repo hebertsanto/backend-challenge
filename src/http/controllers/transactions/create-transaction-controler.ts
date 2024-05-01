@@ -1,22 +1,19 @@
 import { Request, Response } from 'express';
-import { ZodError, z } from 'zod';
 import { NotFoundResource } from '../../../helpers/error';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
 import { HttpStatus } from '../../../helpers/http/status-code';
+import { validateBody } from '../../middlewares/validate-body';
+import { createTransactionValidationSchema } from '../../../helpers/validations/schemas';
 
 export const createTransationController = async (
   req: Request,
   res: Response,
 ) => {
   const makeTransaction = await makeTransactionUseCase();
-  const transaction = z.object({
-    ammout: z.string(),
-    card_id: z.string().uuid(),
-  });
+
+  const { ammout, card_id } = req.body;
 
   try {
-    const { ammout, card_id } = transaction.parse(req.body);
-
     const transation = await makeTransaction.create({
       ammout,
       card_id,
@@ -32,11 +29,10 @@ export const createTransationController = async (
         msg: 'Card id does not exist',
       });
     }
-    if (error instanceof ZodError) {
-      return res.status(HttpStatus.BadRequest).json({
-        msg: 'Error validating data',
-        error,
-      });
-    }
   }
 };
+
+export const createTransactionHandler = [
+  validateBody(createTransactionValidationSchema),
+  createTransationController,
+];
