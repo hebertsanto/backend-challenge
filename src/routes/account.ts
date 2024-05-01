@@ -5,6 +5,6 @@ import { findAccountByIdController } from '../http/controllers/account/find-acco
 
 export const accountRoute = Router();
 
-accountRoute.post('/account', createAccountController);
-accountRoute.get('/account/:id', findAccountByIdController);
-accountRoute.delete('/account/:id', deleteAccountController);
+accountRoute.post('/create', createAccountController);
+accountRoute.get('/:id', findAccountByIdController);
+accountRoute.delete('/:id', deleteAccountController);

@@ -5,6 +5,6 @@ import { createCardController } from '../http/controllers/cards/create-card-cont
 
 export const cardRoutes = Router();
 
-cardRoutes.get('/cards/:id/file', listAllCardsController);
-cardRoutes.get('/card/:id', listCardByIdController);
-cardRoutes.post('/card', createCardController);
+cardRoutes.post('/create', createCardController);
+cardRoutes.get('/:id/file', listAllCardsController);
+cardRoutes.get('/:id', listCardByIdController);

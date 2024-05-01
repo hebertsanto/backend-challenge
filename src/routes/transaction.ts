@@ -5,6 +5,6 @@ import { generatePdfTransaction } from '../http/controllers/transactions/list-pd
 
 export const transationsRoutes = Router();
 
-transationsRoutes.get('/transaction/all/:id', listAllTransactiontionController);
-transationsRoutes.get('/transaction/:id/file', generatePdfTransaction);
-transationsRoutes.post('/transaction', createTransationController);
+transationsRoutes.post('/create', createTransationController);
+transationsRoutes.get('/all/:id', listAllTransactiontionController);
+transationsRoutes.get('/:id/file', generatePdfTransaction);
