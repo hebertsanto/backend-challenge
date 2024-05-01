@@ -7,6 +7,7 @@ import {
 import { logger } from '../../helpers/logger';
 import { TAccount } from '../../helpers/types';
 import { Account } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 export class CreateAccountUseCase {
   constructor(private accountRepository: PrismaAccountRepository) {}
@@ -72,9 +73,12 @@ export class CreateAccountUseCase {
         throw new Error('Must be a valid email');
       }
 
+      logger.info('generate hash of password...');
+      const passwordHash = await bcrypt.hash(password, 10);
+
       const createdAccount = await this.accountRepository.create({
         email,
-        password,
+        password: passwordHash,
       });
 
       return createdAccount;
