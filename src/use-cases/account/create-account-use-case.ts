@@ -14,6 +14,7 @@ export class CreateAccountUseCase {
 
   /**
    * @constructor
+   * @description This function verify if account already exist in database.
    * @param {string} id_account - The account ID to verify.
    * @returns {Promise<Account|null>} - A promise that resolves to the account found or null if it does not exist.
    * @throws {MissingParamError} If the provided ID is not a valid string.
@@ -43,12 +44,13 @@ export class CreateAccountUseCase {
 
   /**
    * @constructor
+   * @description This function create a new account in database
    * @param {string} email - The email to create an account.
    * @param {string} password - The password to create an account.
    * @returns {Promise<Account>} - A promise that resolves to the account found
    * @throws {MissingParamError} - If the email or password is not provided
    * @throws {ResourseAlreadyExist} - If the account already exist
-   * @throws {Error} If an error occurs while checking the existence of the account.
+   * @throws {Error} If an error occurs while create an account.
    */
   async create({ email, password }: TAccount): Promise<Account> {
     try {
@@ -92,6 +94,7 @@ export class CreateAccountUseCase {
 
   async deleteAccount(id_account: string): Promise<Account | null> {
     await this.checkAccountExistence(id_account);
+
     return await this.accountRepository.delete(id_account);
   }
 
