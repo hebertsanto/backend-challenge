@@ -6,7 +6,6 @@ import { CreateCardUseCase } from '../card/card-use-case';
 import { CreateTranscationUseCase } from '../transaction/create-transaction-use-case';
 
 export async function makeTransactionUseCase() {
-
   const prismaCardsRepository = new PrismaCardsRepository();
   const prismaTransaction = new PrismaTransactionRepository();
   const cardRepository = new PrismaCardsRepository();

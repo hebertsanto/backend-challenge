@@ -3,7 +3,6 @@ import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma
 import { CreateAccountUseCase } from '../account/create-account-use-case';
 import { CreateCardUseCase } from '../card/card-use-case';
 
-
 export async function makeCardUseCase() {
   const prismaAccountRepository = new PrismaAccountRepository();
   const accountService = new CreateAccountUseCase(prismaAccountRepository);
@@ -11,7 +10,7 @@ export async function makeCardUseCase() {
 
   const cardUseCase = new CreateCardUseCase(
     prismaCardRepository,
-    accountService
+    accountService,
   );
 
   return cardUseCase;

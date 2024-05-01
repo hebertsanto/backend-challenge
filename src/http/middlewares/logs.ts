@@ -1,8 +1,10 @@
 import { Response, Request, NextFunction } from 'express';
 
-
-export const logsMiddleware = (req : Request, res :Response, next : NextFunction) => {
-
+export const logsMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const start = Date.now();
 
   res.on('finish', () => {
@@ -12,7 +14,6 @@ export const logsMiddleware = (req : Request, res :Response, next : NextFunction
     const status = req.statusCode;
 
     const timestamp = new Date().toISOString();
-
 
     return `[${timestamp}]  - ${method} - ${url} - ${status} - ${ms}`;
   });
