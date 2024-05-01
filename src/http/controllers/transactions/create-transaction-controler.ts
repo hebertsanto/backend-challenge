@@ -1,14 +1,13 @@
 import { Request, Response } from 'express';
 import { ZodError, z } from 'zod';
-import { NotFoundResource  } from '../../../helpers/error';
-import { TTransaction } from '../../../helpers/types';
+import { NotFoundResource } from '../../../helpers/error';
 import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
+import { HttpStatus } from '../../../helpers/http/status-code';
 
 export const createTransationController = async (
   req: Request,
   res: Response,
-) : Promise<TTransaction | unknown> => {
-
+) => {
   const makeTransaction = await makeTransactionUseCase();
   const transaction = z.object({
     ammout: z.string(),
@@ -23,19 +22,19 @@ export const createTransationController = async (
       card_id,
     });
 
-    return res.status(200).json({
-      msg: 'transation created successfully',
+    return res.status(HttpStatus.Create).json({
+      msg: 'Transation created successfully',
       transation,
     });
   } catch (error) {
     if (error instanceof NotFoundResource) {
-      return res.status(400).json({
-        msg: 'this card id does not exist',
+      return res.status(HttpStatus.NotFound).json({
+        msg: 'Card id does not exist',
       });
     }
     if (error instanceof ZodError) {
-      return res.status(400).json({
-        msg: 'error validating data',
+      return res.status(HttpStatus.BadRequest).json({
+        msg: 'Error validating data',
         error,
       });
     }
