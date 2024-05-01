@@ -1,29 +1,40 @@
-import {Account, Prisma } from '@prisma/client';
+import { Account, Prisma } from '@prisma/client';
 import { AccountRepository } from '../account-repository';
 import { prisma } from '../../database/prisma';
 
 export class PrismaAccountRepository implements AccountRepository {
-  public async create(data: Prisma.AccountUncheckedCreateInput): Promise<Account> {
+  public async create(
+    data: Prisma.AccountUncheckedCreateInput,
+  ): Promise<Account> {
     const account = await prisma.account.create({
-      data
+      data,
     });
 
     return account;
   }
-  public async delete(id: string): Promise< Account | null> {
+  public async delete(id: string): Promise<Account | null> {
     return await prisma.account.delete({
-      where:{
-        id
-      }
+      where: {
+        id,
+      },
     });
   }
-  public async findById(id: string): Promise< Account | null> {
+  public async findById(id: string): Promise<Account | null> {
     const account = await prisma.account.findUnique({
-      where:{
-        id
-      }
+      where: {
+        id,
+      },
     });
 
+    return account;
+  }
+
+  async findAccountByEmail(email: string): Promise<Account | null> {
+    const account = await prisma.account.findFirst({
+      where: {
+        email,
+      },
+    });
     return account;
   }
 }
