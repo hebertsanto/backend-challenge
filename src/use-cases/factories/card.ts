@@ -1,6 +1,6 @@
 import { PrismaAccountRepository } from '../../adpaters/repositories/prisma/prisma-account-repository';
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
-import { CreateAccountUseCase } from '../account/create-account-use-case';
+import { CreateAccountUseCase } from '../account/account-use-case';
 import { CreateCardUseCase } from '../card/card-use-case';
 
 export async function makeCardUseCase() {

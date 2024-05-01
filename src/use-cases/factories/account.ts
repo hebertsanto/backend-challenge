@@ -1,5 +1,5 @@
 import { PrismaAccountRepository } from '../../adpaters/repositories/prisma/prisma-account-repository';
-import { CreateAccountUseCase } from '../account/create-account-use-case';
+import { CreateAccountUseCase } from '../account/account-use-case';
 
 export async function makeAccountUseCase() {
   const prismaAccountRepository = new PrismaAccountRepository();

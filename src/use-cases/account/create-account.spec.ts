@@ -1,4 +1,4 @@
-import { CreateAccountUseCase } from './create-account-use-case';
+import { CreateAccountUseCase } from './account-use-case';
 import { PrismaAccountRepository } from '../../adpaters/repositories/prisma/prisma-account-repository';
 import { MissingParamError, NotFoundResource } from '../../helpers/error';
 

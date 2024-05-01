@@ -1,7 +1,7 @@
 import { Card } from '@prisma/client';
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
 import { TCard } from '../../helpers/types';
-import { CreateAccountUseCase } from '../account/create-account-use-case';
+import { CreateAccountUseCase } from '../account/account-use-case';
 import { MissingParamError, NotFoundResource } from '../../helpers/error';
 import { logger } from '../../helpers/logger';
 
