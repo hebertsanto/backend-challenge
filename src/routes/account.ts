@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import { deleteAccountController } from '../http/controllers/account/delete-account-controller';
-import { findAccountByIdController } from '../http/controllers/account/find-account-controller';
-import { createAccountHandler } from '../http/controllers/account/create-account-controller';
+import { findAccountByIdController } from '../http/controllers/account/get-by-id';
+import { createAccountHandler } from '../http/controllers/account/add';
 
-export const accountRoute = Router();
+export const accountGroupRouter = Router();
 
-accountRoute.post('/create', createAccountHandler);
-accountRoute.get('/:id', findAccountByIdController);
-accountRoute.delete('/:id', deleteAccountController);
+accountGroupRouter.post('/create', createAccountHandler);
+accountGroupRouter.get('/:id', findAccountByIdController);

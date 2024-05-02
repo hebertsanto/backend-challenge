@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
 import { ZodError } from 'zod';
-import { makeAccountUseCase } from '../../../use-cases/factories/account';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createAccountValidationSchema } from '../../../helpers/validations/schemas';
+import addAccountFactory from '../../../use-cases/factories/account/add-account';
 
 export const createAccountController = async (req: Request, res: Response) => {
-  const createAccountUseCase = await makeAccountUseCase();
-  try {
-    const { email, password } = req.body;
+  const createAccountUseCase = await addAccountFactory();
+  const { email, password } = req.body;
 
-    const account = await createAccountUseCase.create({ email, password });
+  try {
+    const account = await createAccountUseCase.add(email, password);
 
     return res.status(HttpStatus.Create).json({
       msg: 'Account created successfully',

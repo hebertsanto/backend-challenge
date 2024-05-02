@@ -3,8 +3,8 @@ import { listAllCardsController } from '../http/controllers/cards/list-all-cards
 import { listCardByIdController } from '../http/controllers/cards/list-card-controller';
 import { createCardHandler } from '../http/controllers/cards/create-card-controller';
 
-export const cardRoutes = Router();
+export const cardGroupRouter = Router();
 
-cardRoutes.post('/create', createCardHandler);
-cardRoutes.get('/:id/file', listAllCardsController);
-cardRoutes.get('/:id', listCardByIdController);
+cardGroupRouter.post('/create', createCardHandler);
+cardGroupRouter.get('/:id/file', listAllCardsController);
+cardGroupRouter.get('/:id', listCardByIdController);

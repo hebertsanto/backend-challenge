@@ -3,8 +3,8 @@ import { listAllTransactiontionController } from '../http/controllers/transactio
 import { createTransactionHandler } from '../http/controllers/transactions/create-transaction-controler';
 import { generatePdfTransaction } from '../http/controllers/transactions/list-pdf-crontroller';
 
-export const transationsRoutes = Router();
+export const transactionGroupRouter = Router();
 
-transationsRoutes.post('/create', createTransactionHandler);
-transationsRoutes.get('/all/:id', listAllTransactiontionController);
-transationsRoutes.get('/:id/file', generatePdfTransaction);
+transactionGroupRouter.post('/create', createTransactionHandler);
+transactionGroupRouter.get('/all/:id', listAllTransactiontionController);
+transactionGroupRouter.get('/:id/file', generatePdfTransaction);
