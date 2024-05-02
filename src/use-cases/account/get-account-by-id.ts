@@ -1,7 +1,7 @@
 import { Account } from '@prisma/client';
 import { DbGetAccountById } from '../../adpaters/repositories/prisma/db-find-account-by-id';
 
-export class GetAccountUseCase implements DbGetAccountById {
+export class GetAccounByIdtUseCase implements DbGetAccountById {
   constructor(private findAccountByEmailRepository: DbGetAccountById) {}
 
   async findById(account_id: string): Promise<Account | null> {

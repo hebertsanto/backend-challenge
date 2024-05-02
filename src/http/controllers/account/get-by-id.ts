@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { MissingParamError, NotFoundResource } from '../../../helpers/error';
-import { makeAccountUseCase } from '../../../use-cases/factories/account';
 import { HttpStatus } from '../../../helpers/http/status-code';
+import getAccountByIdFactory from '../../../use-cases/factories/account/find-account-by-id';
 
 export const findAccountByIdController = async (
   req: Request,
   res: Response,
 ) => {
-  const makeFindAccount = await makeAccountUseCase();
+  const makeFindAccount = await getAccountByIdFactory();
 
   const paramsSchema = z.object({
     id: z.string().uuid(),
@@ -16,7 +16,7 @@ export const findAccountByIdController = async (
 
   try {
     const { id } = paramsSchema.parse(req.params);
-    const account = await makeFindAccount.findAccountById(id);
+    const account = await makeFindAccount.findById(id);
 
     return res.status(HttpStatus.Ok).json({
       msg: 'Account found successfully',
