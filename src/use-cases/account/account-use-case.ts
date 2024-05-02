@@ -16,7 +16,7 @@ export class CreateAccountUseCase {
    * @constructor
    * @description This function verify if account already exist in database.
    * @param {string} id_account - The account ID to verify.
-   * @returns {Promise<Account|null>} - A promise that resolves to the account found or null if it does not exist.
+   * @returns {Promise<Account | null>} - A promise that resolves to the account found or null if it does not exist.
    * @throws {MissingParamError} If the provided ID is not a valid string.
    * @throws {NotFoundResource} If account Does not exists.
    * @throws {Error} If an error occurs while checking the existence of the account.
