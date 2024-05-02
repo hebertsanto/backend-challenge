@@ -8,7 +8,7 @@ import { DbAddAccount } from '../../adpaters/repositories/prisma/db-add-account'
 
 export class AddAccountUseCase implements AddAccount {
   constructor(
-    private prismaAccountRepository: DbAddAccount,
+    private accountRepository: DbAddAccount,
     private hasher: Hasher,
   ) {}
 
@@ -21,7 +21,7 @@ export class AddAccountUseCase implements AddAccount {
 
       const passwordHash = await this.hasher.hash(password);
 
-      const createdAccount = await this.prismaAccountRepository.add({
+      const createdAccount = await this.accountRepository.add({
         email,
         password: passwordHash,
       });
