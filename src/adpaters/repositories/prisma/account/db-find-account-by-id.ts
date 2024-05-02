@@ -1,6 +1,6 @@
 import { Account } from '@prisma/client';
-import { prisma } from '../../database/prisma';
-import { FindAccountByIdRepository } from '../../../domain/use_cases/account/get-account-by-id';
+import { prisma } from '../../../database/prisma';
+import { FindAccountByIdRepository } from '../../db/account/db-account-by-id-repository';
 
 export class DbGetAccountById implements FindAccountByIdRepository {
   async findById(account_id: string): Promise<Account | null> {

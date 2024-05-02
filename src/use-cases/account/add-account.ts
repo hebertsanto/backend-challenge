@@ -4,7 +4,7 @@ import { MissingParamError } from '../../helpers/error';
 import { logger } from '../../helpers/logger';
 import { validateEmail } from '../../helpers/validations/validate-email';
 import { Hasher } from '../../adpaters/protocols/hasher';
-import { DbAddAccount } from '../../adpaters/repositories/prisma/db-add-account';
+import { DbAddAccount } from '../../adpaters/repositories/prisma/account/db-add-account';
 
 export class AddAccountUseCase implements AddAccount {
   constructor(

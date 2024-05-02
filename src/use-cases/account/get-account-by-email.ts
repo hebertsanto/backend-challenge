@@ -1,6 +1,6 @@
 import { Account } from '@prisma/client';
 import { GetAccountByEmail } from '../../domain/use_cases/account/get-account-by-email';
-import { DbGetAccountByEmail } from '../../adpaters/repositories/prisma/db-get-account-by-email';
+import { DbGetAccountByEmail } from '../../adpaters/repositories/prisma/account/db-get-account-by-email';
 
 export class GetAccounByEmailtUseCase implements GetAccountByEmail {
   constructor(private findAccountByEmailRepository: DbGetAccountByEmail) {}

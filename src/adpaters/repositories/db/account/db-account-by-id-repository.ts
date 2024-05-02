@@ -1,5 +1,5 @@
 import { Account } from '@prisma/client';
 
-export interface findAccountById {
+export interface FindAccountByIdRepository {
   findById(account_id: string): Promise<Account | null>;
 }
