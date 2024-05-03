@@ -4,7 +4,7 @@ import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createAccountValidationSchema } from '../../../helpers/validations/schemas';
 
-interface HandleRequestController {
+export interface HandleRequestController {
   handle(req: Request, res: Response, next?: NextFunction): Promise<Response>;
 }
 
