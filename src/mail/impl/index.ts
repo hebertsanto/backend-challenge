@@ -13,7 +13,7 @@ export const sendEmailToConfirmateAccount = async (email: string) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    logger.info(`[Email confirmation was sent to user ${email}...] $`);
+    logger.info(`[Email confirmation was sent to user ${email}...]`);
   } catch (error) {
     throw new Error('Some error ocurred');
   }
