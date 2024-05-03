@@ -8,6 +8,8 @@ export const validatePassword = (password: string) => {
     logger.info(
       '[ Minimum eight characters, at least one letter, one number and one special character ]',
     );
-    throw new Error('Password must have 8 characters');
+    throw new Error('Invalid password');
   }
+
+  return true;
 };
