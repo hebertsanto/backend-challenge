@@ -28,40 +28,13 @@ enum TwoFactorStatus {
 }
 
 model Account {
-  id           String         @id @default(uuid())
-  email        String?        @unique
-  cpf          String
-  password     String?
-  cards        Card[]
-  status       StatusAccount  @default(UNCONFIRMED)
-  transactions Transactions[]
+  id       String        @id @default(uuid())
+  email    String?       @unique
+  cpf      String        @unique
+  password String?
+  status   StatusAccount @default(UNCONFIRMED)
 
   @@map("users_account")
-}
-
-model Transactions {
-  id            String   @id @default(uuid())
-  amount        String
-  description   String
-  cardId        String
-  emailReciever String   @unique
-  card          Card     @relation(fields: [cardId], references: [id])
-  Account       Account? @relation(fields: [accountId], references: [id])
-  accountId     String?
-
-  createAt DateTime @default(now())
-
-  @@map("users_transactions")
-}
-
-model Card {
-  id         String         @id @default(uuid())
-  accountId  String
-  amount     Int
-  trasations Transactions[]
-  account    Account        @relation(fields: [accountId], references: [id])
-
-  @@map("cards_users")
 }
 
 model CardRequest {
