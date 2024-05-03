@@ -1,12 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import addAccountFactory from '../../../../use-cases/factories/account/add-account';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createAccountValidationSchema } from '../../../helpers/validations/schemas';
-
-export interface HandleRequestController {
-  handle(req: Request, res: Response, next?: NextFunction): Promise<Response>;
-}
+import { HandleRequestController } from '../../../helpers/http/htts-interface';
 
 export class AddAccountController implements HandleRequestController {
   async handle(req: Request, res: Response): Promise<Response> {

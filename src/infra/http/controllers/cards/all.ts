@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { HandleRequestController } from '../account/add';
 import { z } from 'zod';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { makeCardUseCase } from '../../../../use-cases/factories/card';
+import { HandleRequestController } from '../../../helpers/http/htts-interface';
 
 export class GetAllCards implements HandleRequestController {
   async handle(req: Request, res: Response): Promise<Response> {

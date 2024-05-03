@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import getAccountByIdFactory from '../../../../use-cases/factories/account/find-account-by-id';
-import { HandleRequestController } from './add';
 import { z } from 'zod';
 import { HttpStatus } from '../../../helpers/http/status-code';
+import { HandleRequestController } from '../../../helpers/http/htts-interface';
 
 export class GetAccount implements HandleRequestController {
   async handle(req: Request, res: Response): Promise<Response> {

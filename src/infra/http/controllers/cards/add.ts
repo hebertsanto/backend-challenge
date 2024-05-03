@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { HandleRequestController } from '../account/add';
 import { makeCardUseCase } from '../../../../use-cases/factories/card';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createCardValidationSchema } from '../../../helpers/validations/schemas';
+import { HandleRequestController } from '../../../helpers/http/htts-interface';
 
 export class AddCardController implements HandleRequestController {
   async handle(req: Request, res: Response): Promise<Response> {
