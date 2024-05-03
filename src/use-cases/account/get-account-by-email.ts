@@ -1,7 +1,7 @@
 import { Account } from '@prisma/client';
 import { GetAccountByEmail } from '../../domain/use_cases/account/get-account-by-email';
 import { DbGetAccountByEmail } from '../../adpaters/repositories/prisma/account/db-get-account-by-email';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../infra/helpers/error';
 
 export class GetAccounByEmailtUseCase implements GetAccountByEmail {
   constructor(private findAccountByEmailRepository: DbGetAccountByEmail) {}

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import addAccountFactory from '../../../use-cases/factories/account/add-account';
+import addAccountFactory from '../../../../use-cases/factories/account/add-account';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createAccountValidationSchema } from '../../../helpers/validations/schemas';
@@ -8,7 +8,7 @@ export interface HandleRequestController {
   handle(req: Request, res: Response, next?: NextFunction): Promise<Response>;
 }
 
-export class AddCardController implements HandleRequestController {
+export class AddAccountController implements HandleRequestController {
   async handle(req: Request, res: Response): Promise<Response> {
     const addAccountService = await addAccountFactory();
     const { email, password } = req.body;
@@ -29,5 +29,5 @@ export class AddCardController implements HandleRequestController {
 
 export const addAccountHandler = [
   validateBody(createAccountValidationSchema),
-  new AddCardController().handle,
+  new AddAccountController().handle,
 ];

@@ -1,6 +1,6 @@
 import { Transactions } from '@prisma/client';
 import { GetTransactionByIdRepository } from '../../db/transactions/get-transaction-by-id-repository';
-import { prisma } from '../../../database/prisma';
+import { prisma } from '../../../../infra/lib/prisma';
 
 export class DbGetTransactionById implements GetTransactionByIdRepository {
   async getById(transaction_id: string): Promise<Transactions | null> {

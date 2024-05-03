@@ -1,7 +1,7 @@
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
 import { PrismaTransactionRepository } from '../../adpaters/repositories/prisma/prisma-transaction';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
-import { TTransaction } from '../../helpers/types';
+import { MissingParamError, NotFoundResource } from '../../infra/helpers/error';
+import { TTransaction } from '../../infra/helpers/types';
 import { CreateCardUseCase } from '../card/card-use-case';
 
 export class CreateTranscationUseCase {

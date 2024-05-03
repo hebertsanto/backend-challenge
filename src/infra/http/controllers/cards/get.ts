@@ -1,24 +1,24 @@
 import { Request, Response } from 'express';
-import getAccountByIdFactory from '../../../use-cases/factories/account/find-account-by-id';
-import { HandleRequestController } from './add';
+import { HandleRequestController } from '../account/add';
 import { z } from 'zod';
 import { HttpStatus } from '../../../helpers/http/status-code';
+import { makeCardUseCase } from '../../../../use-cases/factories/card';
 
-export class GetAccount implements HandleRequestController {
+export class GetCard implements HandleRequestController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const makeFindAccount = await getAccountByIdFactory();
+    const listCardByIdUseCase = await makeCardUseCase();
+
     const paramsSchema = z.object({
       id: z.string().uuid(),
     });
-
     const { id } = paramsSchema.parse(req.params);
 
     try {
-      const account = await makeFindAccount.findById(id);
+      const card = await listCardByIdUseCase.listCard(id);
 
       return res.status(HttpStatus.Ok).json({
-        msg: 'Account found successfully',
-        account,
+        msg: 'card found successfully',
+        card,
       });
     } catch (error) {
       return res.status(HttpStatus.InternalSeverError).json({
@@ -28,4 +28,4 @@ export class GetAccount implements HandleRequestController {
   }
 }
 
-export const getAccountByIdHandler = new GetAccount().handle;
+export const getCardByIdHandler = new GetCard().handle;

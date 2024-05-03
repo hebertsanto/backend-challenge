@@ -1,5 +1,5 @@
 import { Card } from '@prisma/client';
-import { prisma } from '../../../database/prisma';
+import { prisma } from '../../../../infra/lib/prisma';
 import { GetCardByIdRepository } from '../../db/card/get-card-by-id-repository';
 
 export class DbGetCardById implements GetCardByIdRepository {

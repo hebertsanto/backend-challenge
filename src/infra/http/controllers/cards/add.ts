@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { HandleRequestController } from '../account/add';
-import { makeCardUseCase } from '../../../use-cases/factories/card';
+import { makeCardUseCase } from '../../../../use-cases/factories/card';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createCardValidationSchema } from '../../../helpers/validations/schemas';

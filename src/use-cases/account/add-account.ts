@@ -1,15 +1,16 @@
 import { Account } from '@prisma/client';
 import { AddAccount } from '../../domain/use_cases/account/add-account';
-import { MissingParamError } from '../../helpers/error';
-import { logger } from '../../helpers/logger';
-import { validateEmail } from '../../helpers/validations/validate-email';
+import { MissingParamError } from '../../infra/helpers/error';
+import { logger } from '../../infra/helpers/logger';
+import { validateEmail } from '../../infra/helpers/validations/validate-email';
 import { Hasher } from '../../adpaters/protocols/hasher';
 import { DbAddAccount } from '../../adpaters/repositories/prisma/account/db-add-account';
-import { validatePassword } from '../../helpers/validations/validate-password';
+import { validatePassword } from '../../infra/helpers/validations/validate-password';
 
 interface ValidateParamsAddAccount {
   validateRequest(email: string, password: string): void;
 }
+
 export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
   constructor(
     private accountRepository: DbAddAccount,
@@ -21,12 +22,10 @@ export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
       this.validateRequest(email, password);
       const passwordHash = await this.hasher.hash(password);
 
-      const createdAccount = await this.accountRepository.add({
+      return await this.accountRepository.add({
         email,
         password: passwordHash,
       });
-
-      return createdAccount;
     } catch (error) {
       logger.error(
         `Error while checking account existence: ${(error as Error).message}`,

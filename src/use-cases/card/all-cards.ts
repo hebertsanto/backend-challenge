@@ -1,7 +1,7 @@
 import { Card } from '@prisma/client';
 import { AllCards } from '../../domain/use_cases/cards/all-cards';
 import { DbGetAllCards } from '../../adpaters/repositories/prisma/cards/db-get-all-cards';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../infra/helpers/error';
 
 export class GetAllCardsUseCase implements AllCards {
   constructor(private getAllCardsRepository: DbGetAllCards) {}

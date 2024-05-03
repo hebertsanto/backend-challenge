@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
+import { makeTransactionUseCase } from '../../../../use-cases/factories/transactions';
 import { string, z } from 'zod';
 import { MissingParamError, NotFoundResource } from '../../../helpers/error';
 

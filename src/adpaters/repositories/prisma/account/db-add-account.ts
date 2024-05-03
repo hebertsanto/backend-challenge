@@ -1,5 +1,5 @@
 import { Account, Prisma } from '@prisma/client';
-import { prisma } from '../../../database/prisma';
+import { prisma } from '../../../../infra/lib/prisma';
 import { AddAccountRepository } from '../../db/account/add-account-repository';
 
 export class DbAddAccount implements AddAccountRepository {

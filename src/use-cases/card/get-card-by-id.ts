@@ -1,7 +1,7 @@
 import { Card } from '@prisma/client';
 import { DbGetCardById } from '../../adpaters/repositories/prisma/cards/db-get-card-by-id';
 import { GetCardByIdRepository } from '../../adpaters/repositories/db/card/get-card-by-id-repository';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../infra/helpers/error';
 
 export class GetCardByIdUseCase implements GetCardByIdRepository {
   constructor(private getCardByIdRepository: DbGetCardById) {}

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { NotFoundResource } from '../../../helpers/error';
-import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
+import { makeTransactionUseCase } from '../../../../use-cases/factories/transactions';
 import { HttpStatus } from '../../../helpers/http/status-code';
 import { validateBody } from '../../middlewares/validate-body';
 import { createTransactionValidationSchema } from '../../../helpers/validations/schemas';

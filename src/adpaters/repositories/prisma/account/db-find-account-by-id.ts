@@ -1,5 +1,5 @@
 import { Account } from '@prisma/client';
-import { prisma } from '../../../database/prisma';
+import { prisma } from '../../../../infra/lib/prisma';
 import { FindAccountByIdRepository } from '../../db/account/db-account-by-id-repository';
 
 export class DbGetAccountById implements FindAccountByIdRepository {

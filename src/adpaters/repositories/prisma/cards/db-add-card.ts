@@ -1,6 +1,6 @@
 import { Card, Prisma } from '@prisma/client';
 import { AddCardRepository } from '../../db/card/add-card-repository';
-import { prisma } from '../../../database/prisma';
+import { prisma } from '../../../../infra/lib/prisma';
 
 export class DbAddCard implements AddCardRepository {
   async add(data: Prisma.CardUncheckedCreateInput): Promise<Card> {

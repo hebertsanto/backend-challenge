@@ -3,11 +3,13 @@ import { MailOptions } from '../options';
 import { transporter } from '../transporter';
 
 export const sendEmailToConfirmateAccount = async (email: string) => {
+  const token = 'kwoasfj';
+
   const mailOptions: MailOptions = {
     from: 'user_email',
     to: email,
     subject: 'content',
-    text: 'token',
+    text: token,
     html: '<p>Plesase confirm your account</p>',
   };
 

@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import { v1Router } from '../../routes';
+import { v1Router } from '../../router';
 import { zodErrorMiddleware } from '../middlewares/zod-error';
 import { logsMiddleware } from '../middlewares/logs';
 import { logger } from '../../helpers/logger';

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import htmlpdf from 'html-pdf-node';
 import { z } from 'zod';
-import { makeTransactionUseCase } from '../../../use-cases/factories/transactions';
+import { makeTransactionUseCase } from '../../../../use-cases/factories/transactions';
 import { NotFoundResource } from '../../../helpers/error';
 
 export const generatePdfTransaction = async (req: Request, res: Response) => {

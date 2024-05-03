@@ -1,9 +1,10 @@
 import { prisma } from './prisma';
+import { logger } from '../helpers/logger';
 
 export async function main() {}
 main()
   .then(() => {
-    console.log('prisma is running');
+    logger.info('Prisma is running');
     prisma.$disconnect();
   })
   .catch((error) => {

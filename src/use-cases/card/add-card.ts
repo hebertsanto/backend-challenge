@@ -2,7 +2,7 @@ import { Card } from '@prisma/client';
 import { AddCard } from '../../domain/use_cases/cards/add-card';
 import { DbAddCard } from '../../adpaters/repositories/prisma/cards/db-add-card';
 import { DbGetAccountById } from '../../adpaters/repositories/prisma/account/db-find-account-by-id';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
+import { MissingParamError, NotFoundResource } from '../../infra/helpers/error';
 
 interface ValidateParamsAddCard {
   validateRequest(amount: number, id_account: string): void;
@@ -23,9 +23,7 @@ export class AddCardUseCase implements AddCard, ValidateParamsAddCard {
       throw new NotFoundResource('id_account');
     }
 
-    const createCard = await this.addCardRepository.add({ amount, id_account });
-
-    return createCard;
+    return await this.addCardRepository.add({ amount, id_account });
   }
 
   public validateRequest(amount: number, id_account: string): void {

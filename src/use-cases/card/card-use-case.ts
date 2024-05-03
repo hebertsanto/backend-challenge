@@ -1,9 +1,9 @@
 import { Card } from '@prisma/client';
 import { PrismaCardsRepository } from '../../adpaters/repositories/prisma/prisma-card-repository';
-import { TCard } from '../../helpers/types';
+import { TCard } from '../../infra/helpers/types';
 import { CreateAccountUseCase } from '../account/account-use-case';
-import { MissingParamError, NotFoundResource } from '../../helpers/error';
-import { logger } from '../../helpers/logger';
+import { MissingParamError, NotFoundResource } from '../../infra/helpers/error';
+import { logger } from '../../infra/helpers/logger';
 
 export class CreateCardUseCase {
   constructor(
