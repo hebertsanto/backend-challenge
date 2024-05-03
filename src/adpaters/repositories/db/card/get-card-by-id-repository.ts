@@ -1,5 +1,5 @@
 import { Card } from '@prisma/client';
 
-export interface getCardByIdRepository {
-  all(id_account: string): Promise<Card[]>;
+export interface GetCardByIdRepository {
+  findById(card_id: string): Promise<Card | null>;
 }

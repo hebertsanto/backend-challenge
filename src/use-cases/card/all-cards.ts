@@ -1,6 +1,6 @@
 import { Card } from '@prisma/client';
 import { AllCards } from '../../domain/use_cases/cards/all-cards';
-import { DbGetAllCards } from '../../adpaters/repositories/prisma/cards/all-cards';
+import { DbGetAllCards } from '../../adpaters/repositories/prisma/cards/db-get-all-cards';
 
 export class GetAllCardsUseCase implements AllCards {
   constructor(private getAllCardsRepository: DbGetAllCards) {}
