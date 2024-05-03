@@ -11,27 +11,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum StatusCardRequest {
+  PENDING
+  APROVED
+  REJECTD
+}
+
+enum StatusAccount {
+  CONFIRMED
+  UNCONFIRMED
+}
+
+enum TwoFactorStatus {
+  ACTIVE
+  NOT_ACTIVATE
+}
+
 model Account {
   id           String         @id @default(uuid())
   email        String?        @unique
+  cpf          String
   password     String?
   cards        Card[]
+  status       StatusAccount  @default(UNCONFIRMED)
   transactions Transactions[]
+
+  @@map("users_account")
 }
 
 model Transactions {
-  id        String   @id @default(uuid())
-  ammout    String
-  card_id   String
-  card      Card     @relation(fields: [card_id], references: [id])
-  Account   Account? @relation(fields: [accountId], references: [id])
-  accountId String?
+  id            String   @id @default(uuid())
+  amount        String
+  description   String
+  cardId        String
+  emailReciever String   @unique
+  card          Card     @relation(fields: [cardId], references: [id])
+  Account       Account? @relation(fields: [accountId], references: [id])
+  accountId     String?
+
+  createAt DateTime @default(now())
+
+  @@map("users_transactions")
 }
 
 model Card {
   id         String         @id @default(uuid())
-  id_account String
+  accountId  String
   amount     Int
   trasations Transactions[]
-  account    Account        @relation(fields: [id_account], references: [id])
+  account    Account        @relation(fields: [accountId], references: [id])
+
+  @@map("cards_users")
+}
+
+model CardRequest {
+  id              String            @id @default(uuid())
+  userId          String
+  cardType        String
+  deliveryAddress String
+  status          StatusCardRequest @default(PENDING)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@map("card_request")
+}
+
+model Notifications {
+  id       String   @id @default(uuid())
+  title    String
+  content  String
+  createAt DateTime @default(now())
+
+  @@map("notifications")
+}
+
+model TwoFactorAuthentication {
+  id           String          @id @default(uuid())
+  verification TwoFactorStatus @default(NOT_ACTIVATE)
 }

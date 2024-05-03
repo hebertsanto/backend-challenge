@@ -1,5 +1,5 @@
-import { main } from './adpaters/database/con.prisma';
-import { AppRoutes } from './http/express';
+import { main } from './infra/lib/connection.prisma';
+import { AppRoutes } from './infra/http/express';
 
 const app = new AppRoutes();
 

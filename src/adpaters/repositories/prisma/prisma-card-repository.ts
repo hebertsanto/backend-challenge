@@ -1,4 +1,4 @@
-import { prisma } from '../../database/prisma';
+import { prisma } from '../../../infra/lib/prisma';
 import { Prisma, Card } from '@prisma/client';
 import { CardRepository } from '../card-repository';
 

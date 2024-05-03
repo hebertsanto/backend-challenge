@@ -1,5 +1,5 @@
 import { BcryptAdapter } from '../../../adpaters/cryptography/bcrypt-adapter';
-import { DbAddAccount } from '../../../adpaters/repositories/prisma/db-add-account';
+import { DbAddAccount } from '../../../adpaters/repositories/prisma/account/db-add-account';
 import { AddAccountUseCase } from '../../account/add-account';
 
 export default async function addAccountFactory() {
