@@ -8,7 +8,7 @@
     "lint": "prettier --write .",
     "fix": "npm run eslint --fix .",
     "prepare": "husky",
-    "test": "jest",
+    "test": "vitest",
     "prod": "jest e2e"
   },
   "keywords": [],
@@ -33,6 +33,8 @@
     "prisma": "^5.9.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.6.0",
     "winston": "^3.13.0",
     "zod": "^3.22.4"
   },
