@@ -10,7 +10,6 @@ import { validatePassword } from '../../helpers/validations/validate-password';
 interface ValidateParamsAddAccount {
   validateRequest(email: string, password: string): void;
 }
-
 export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
   constructor(
     private accountRepository: DbAddAccount,
@@ -36,7 +35,7 @@ export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
     }
   }
 
-  validateRequest(email: string, password: string): void {
+  public validateRequest(email: string, password: string): void {
     if (!email) throw new MissingParamError('email');
     if (!password) throw new MissingParamError('password');
 
