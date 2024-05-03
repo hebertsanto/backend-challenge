@@ -30,7 +30,9 @@ export class AppRoutes {
   }
 
   private routes() {
-    this.expressApp.use(v1Router);
+    const prefixRouter = '/api/v1';
+
+    this.expressApp.use(prefixRouter, v1Router);
 
     this.expressApp.get('/health', (_req: Request, res: Response) => {
       return res.status(HttpStatus.Ok).json({
