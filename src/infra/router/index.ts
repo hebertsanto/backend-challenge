@@ -5,6 +5,6 @@ import { accountGroupRouter } from './account';
 
 export const v1Router = Router();
 
-v1Router.use('/api/v1/transaction', transactionGroupRouter);
-v1Router.use('/api/v1/card', cardGroupRouter);
-v1Router.use('/api/v1/account', accountGroupRouter);
+v1Router.use('/transaction', transactionGroupRouter);
+v1Router.use('/card', cardGroupRouter);
+v1Router.use('/account', accountGroupRouter);
