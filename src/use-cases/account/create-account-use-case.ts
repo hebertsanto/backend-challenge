@@ -28,10 +28,12 @@ export class CreateAccountUseCase {
     if (!password) {
       throw new MissingParamError('password');
     }
+
     const createAccount = await this.accountRepository.create({
       email,
       password
     });
+
     return createAccount;
   }
 
