@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { listAllCardsController } from '../http/controllers/cards/list-all-cards-controller';
-import { listCardByIdController } from '../http/controllers/cards/list-card-controller';
-import { createCardHanlder } from '../http/controllers/cards/add-card';
+import { createCardHanlder } from '../http/controllers/cards/add';
+import { getCardByIdHandler } from '../http/controllers/cards/get';
+import { getAllCardByUserIdHandler } from '../http/controllers/cards/all';
 
 export const cardGroupRouter = Router();
 
 cardGroupRouter.post('/create', createCardHanlder);
-cardGroupRouter.get('/:id/file', listAllCardsController);
-cardGroupRouter.get('/:id', listCardByIdController);
+cardGroupRouter.get('/:id/file', getAllCardByUserIdHandler);
+cardGroupRouter.get('/:id', getCardByIdHandler);

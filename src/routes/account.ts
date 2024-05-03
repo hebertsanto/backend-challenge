@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { findAccountByIdController } from '../http/controllers/account/get-by-id';
 import { addAccountHandler } from '../http/controllers/account/add';
+import { getAccountByIdHandler } from '../http/controllers/account/get';
 
 export const accountGroupRouter = Router();
 
 accountGroupRouter.post('/create', addAccountHandler);
-accountGroupRouter.get('/:id', findAccountByIdController);
+accountGroupRouter.get('/:id', getAccountByIdHandler);
