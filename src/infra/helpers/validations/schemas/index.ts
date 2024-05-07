@@ -15,3 +15,10 @@ export const createTransactionValidationSchema = z.object({
   ammout: z.string(),
   card_id: z.string().uuid(),
 });
+
+export const validateCardRequestSchema = z.object({
+  cardType: z.string(),
+  deliveryAddress: z.string(),
+  userId: z.string().uuid(),
+  status: z.enum(['PENDING', 'APPROVED', 'REJECTED']).default('PENDING'),
+});

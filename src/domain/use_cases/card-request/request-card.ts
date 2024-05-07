@@ -1,12 +1,5 @@
-import { CardRequest, StatusCardRequest } from '@prisma/client';
-
-type Request = {
-  cardType: string;
-  userId: string;
-  status: StatusCardRequest;
-  deliverdAddress: string;
-};
+import { CardRequest } from '@prisma/client';
 
 export interface CardRequests {
-  request(data: Request): Promise<CardRequest>;
+  request(data: CardRequest): Promise<CardRequest>;
 }
