@@ -2,14 +2,20 @@ import { Account } from '@prisma/client';
 import { AddAccount } from '../../domain/use_cases/account/add-account';
 import { MissingParamError } from '../../infra/helpers/error';
 import { logger } from '../../infra/helpers/logger';
-import { validateEmail } from '../../infra/helpers/validations/validate-email';
+import { isValidEmail } from '../../infra/helpers/validations/validate-email';
 import { Hasher } from '../../adpaters/protocols/hasher';
 import { DbAddAccount } from '../../adpaters/repositories/prisma/account/db-add-account';
-import { validatePassword } from '../../infra/helpers/validations/validate-password';
+import { isValidPassword } from '../../infra/helpers/validations/validate-password';
 
 interface ValidateParamsAddAccount {
-  validateRequest(email: string, password: string): void;
+  validateRequest({ email, password, cpf }: CreateAccountData): void;
 }
+
+export type CreateAccountData = {
+  email: string;
+  password: string;
+  cpf: string;
+};
 
 export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
   constructor(
@@ -17,14 +23,16 @@ export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
     private hasher: Hasher,
   ) {}
 
-  async add(email: string, password: string): Promise<Account> {
+  async add({ email, password, cpf }: CreateAccountData): Promise<Account> {
     try {
-      this.validateRequest(email, password);
+      this.validateRequest({ email, password, cpf });
+
       const passwordHash = await this.hasher.hash(password);
 
       return await this.accountRepository.add({
         email,
         password: passwordHash,
+        cpf,
       });
     } catch (error) {
       logger.error(
@@ -34,12 +42,12 @@ export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
     }
   }
 
-  public validateRequest(email: string, password: string): void {
+  public validateRequest({ email, password, cpf }: CreateAccountData): void {
     if (!email) throw new MissingParamError('email');
     if (!password) throw new MissingParamError('password');
-
-    logger.info('[validating user informations]');
-    validateEmail(email);
-    validatePassword(password);
+    if (!cpf) throw new MissingParamError('cpf');
+    logger.info('[validating user informations...]');
+    isValidEmail(email);
+    isValidPassword(password);
   }
 }

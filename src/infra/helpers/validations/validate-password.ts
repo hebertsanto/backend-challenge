@@ -1,6 +1,6 @@
 import { logger } from '../logger';
 
-export const validatePassword = (password: string) => {
+export const isValidPassword = (password: string) => {
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
