@@ -1,6 +1,6 @@
 ## Requirements
 
-- [ ] User must be able to create an account with unique email, password and CPF in the system
+- [x] User must be able to create an account with unique email, password and CPF in the system
 
 - [ ] User must also be able to confirm their account and the status in the database must be changed
 

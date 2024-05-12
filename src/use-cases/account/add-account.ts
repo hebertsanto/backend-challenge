@@ -15,7 +15,7 @@ export type CreateAccountData = {
   email: string;
   password: string;
   cpf: string;
-};
+}
 
 export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
   constructor(
@@ -29,6 +29,7 @@ export class AddAccountUseCase implements AddAccount, ValidateParamsAddAccount {
 
       const passwordHash = await this.hasher.hash(password);
 
+      logger.info('Creating a message in kafka');
       return await this.accountRepository.add({
         email,
         password: passwordHash,
