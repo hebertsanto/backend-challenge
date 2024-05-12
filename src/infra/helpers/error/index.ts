@@ -15,7 +15,7 @@ export class ResourseAlreadyExist extends Error {
   }
 }
 
-export class  CredentialsInvalidError extends  Error {
+export class CredentialsInvalidError extends Error {
   code: number;
 
   constructor(message: string, code: number) {
