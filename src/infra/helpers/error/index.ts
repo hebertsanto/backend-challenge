@@ -14,3 +14,12 @@ export class ResourseAlreadyExist extends Error {
     super(`this ${param} already exist`);
   }
 }
+
+export class  CredentialsInvalidError extends  Error {
+  code: number;
+
+  constructor(message: string, code: number) {
+    super(message);
+    this.code = code;
+  }
+}
