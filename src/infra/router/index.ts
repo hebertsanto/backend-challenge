@@ -6,4 +6,4 @@ export const v1Router = Router();
 
 v1Router.use('/request/card', requestCard);
 v1Router.use('/account', accountGroupRouter);
-v1Router.use('/account/notifications');
+
